@@ -1,0 +1,7 @@
+# The get-examples.py uses this file to pull down source code examples for our book from
+# various sources. These will be cached in the examples subdirectory.
+# The script is re-entrant and can be used to pull down updates
+#
+git,hpjpc,git@github.com:LoyolaChicagoCode/hpjpc-source-java.git
+hg,systems-code-samples,https://gkthiruvathukal@bitbucket.org/loyolachicagocs_books/systems-code-samples
+

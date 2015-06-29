@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Writing with Sphinx &mdash; Distributed Systems alpha documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.2.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Distributed Systems alpha documentation" href="index.html" />
+    <link rel="next" title="Clocks and Synchronization" href="clocks.html" />
+    <link rel="prev" title="Project Build Management With Maven" href="maven.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+  
+
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          COMP 339-439</a>
+        <span class="navbar-text navbar-version pull-left"><b>v0.5</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="genindex.html">Index</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Introduction and Issues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#what-is-a-distributed-system">What is a distributed system?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#illustration">Illustration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#advantages-of-distributed-systems-vs-centralized">Advantages of Distributed Systems vs. Centralized</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#advantages-of-distributed-systems-vs-standalones">Advantages of Distributed Systems vs. Standalones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#disadvantages-of-distributed-systems">Disadvantages of Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#key-characteristics">Key Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#resource-sharing">Resource Sharing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#resources-must-be-managed">Resources Must be Managed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#openness">Openness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#open-distributed-systems">Open Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#concurrency">Concurrency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#scalability">Scalability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#fault-tolerance">Fault Tolerance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#transparency">Transparency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#design-issues">Design Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#issues-arising-from-distributed-systems">Issues arising from Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#naming">Naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#naming-name-resolution">Naming - Name Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#naming-design-considerations">Naming - Design Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#communication">Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#types-of-communication">Types of Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#client-server-communication">Client-Server Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#id1">Client-Server Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#group-multicast">Group Multicast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#software-structure">Software Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#distributed-system-software-structure">Distributed System Software Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#consistency-management">Consistency Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#caching">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#consistency">Consistency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#workload-allocation">Workload Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#processor-pool-model">Processor Pool Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#quality-of-service">Quality-of-Service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="networking.html">Networking Primer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#networks">Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#many-types-of-networks">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id1">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id2">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#internetworks">Internetworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#performance-issues">Performance Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#example-a-typical-campus-network">Example- A Typical Campus Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#network-topologies">Network Topologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id3">Network Topologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#a-network-is-not-an-island">A Network is not an Island</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#design-issues-in-layers">Design Issues In Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#protocols-are-divided-into-layers">Protocols are divided into layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#physical-layer">Physical Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#data-link-layer">Data Link Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#the-network-layer">The Network Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#the-transport-layer">The Transport Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#the-session-presentation-layers">The Session &amp; Presentation Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#application-layer">Application Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#interprocess-communication">Interprocess Communication:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#reliability">Reliability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#mapping-data-to-messages">Mapping Data to Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#marshaling">Marshaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#case-study-unix-interprocess-communication-ipc">Case Study: UNIX Interprocess Communication (IPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#example-simple-tcp-messaging-framework-from-hpjpc">Example - Simple TCP Messaging Framework (from HPJPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#message-class">Message class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#messageclient-class">MessageClient class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#messageserver-class">MessageServer class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#messageserverdispatcher-class">MessageServerDispatcher class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#dateservice-using-message-classes-interfaces">DateService using Message Classes/Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#dateclient-using-message-classes-interfaces">DateClient using Message Classes/Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#sockets-communication-using-datagram">Sockets Communication Using Datagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#stream-communication">Stream Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#remote-procedure-call">Remote Procedure Call</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#remote-procedure-call-rpc">Remote Procedure Call (RPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#observations">Observations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#rpc">RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#rpc-mechanisms">RPC Mechanisms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#rpc-steps">RPC Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#design-issues">Design Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#parameter-passing">Parameter Passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id4">Parameter Passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#binding">Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#use-of-specification">Use of Specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#locating-the-server">Locating the Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#how-to-handle-failures">How to Handle Failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#client-cannot-locate-server">Client Cannot Locate Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#lost-request-message">Lost Request Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#lost-reply-message">Lost Reply Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id5">Lost Reply Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#server-crashes">Server Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id6">Server Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#client-crashes">Client Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id7">Client Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#acknowledgments">Acknowledgments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#flow-control">Flow Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#performance">Performance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">Concurrency and Threads</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#threads-vs-processes">Threads vs Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#what-are-processes-threads">What are Processes, Threads?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#common-threading-use-cases">Common Threading Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#mutual-exclusion">Mutual Exclusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#tools-for-achieving-mutual-exclusion">Tools for Achieving Mutual Exclusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#mutex-example-java">Mutex Example/Java</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#semaphore-example">Semaphore Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#barrier">Barrier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#deadlock-a-classic-problem">Deadlock - a classic problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#fork">Fork</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#diner0">Diner0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#diners0">Diners0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#diners1-eliminating-deadlock-with-resource-enumeration">Diners1 - eliminating deadlock with resource enumeration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#execution-with-deadlock">Execution - With Deadlock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#deadlock-free-version">Deadlock-Free Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#common-data-structures-in-concurrent-programming">Common Data Structures in Concurrent Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#design-considerations">Design Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#kernel-threads-vs-user-mode-threads">Kernel Threads vs User Mode Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#concurrent-file-copy-example">Concurrent File Copy Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#sequential-file-copy">Sequential File Copy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#concurrent-file-copy-organization">Concurrent File Copy Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html">Distributed Systems and Storage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#types-of-non-local-storage">Types of Non-Local Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#how-do-we-evaluate-storage-systems">How Do We Evaluate Storage Systems?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#storage-devices">Storage Devices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#storage-and-failure">Storage and Failure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#maximizing-availability-raid">Maximizing Availability - RAID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid">RAID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid-0">RAID - 0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid-1">RAID - 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid-5">RAID - 5</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#local-storage">Local Storage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#implementing-files-and-folders">Implementing Files and Folders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#inodes">Inodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#inodes-indirect-blocks">Inodes - Indirect Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#block-caches">Block Caches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#folders-and-path-traversal">Folders and Path Traversal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#virtual-filesystems-vfs">Virtual Filesystems / VFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#id1">Virtual Filesystems / VFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#virtual-filesystems-and-stacking">Virtual Filesystems and Stacking</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#distributed-filesystems">Distributed Filesystems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#file-service-model">File Service Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#directory-service">Directory Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#naming-transparency">Naming Transparency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#file-sharing-semantics">File Sharing Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#unix-semantics">UNIX Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#more-semantics">More Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#distributed-file-system-implementation">Distributed File System Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#system-structure">System Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#id2">Directory Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#stateless-versus-stateful">Stateless versus Stateful</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#caching">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#caching-server">Caching - Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#caching-client">Caching - Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#client-cache-consistency">Client - Cache Consistency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#client-cache-consistency-other-options">Client - Cache Consistency - Other Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication">Replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication-update-protocols">Replication - Update Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication-voting-algorithm">Replication - Voting Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication-general-quorum-algorithm">Replication - General Quorum Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#case-study-sun-nfs">Case Study - SUN NFS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#sun-nfs-implementation">SUN NFS - Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="directories.html">Directories and LDAP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#what-is-a-directory">What is a Directory?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#what-is-not-a-directory">What is NOT a Directory?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#types">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#characteristics-of-directories">Characteristics of Directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#evolution-of-directories">Evolution of Directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#so-what-is-ldap-exactly">So what is LDAP, exactly?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#early-ldap-implementations">Early LDAP Implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#slapd-stand-alone-ldap-daemon">SLAPD: Stand-alone LDAP Daemon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#slapd-continued">SLAPD: Continued</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#ldap-client-server-exchange-protocol">LDAP Client-Server Exchange Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#example-ldap-usage">Example LDAP Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#schemas">Schemas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#attributes-and-objectclasses">attributes and objectclasses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#ldap-tree-topology">LDAP Tree Topology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#network-architecture">Network Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#distributed-ldap-server-model">Distributed LDAP Server Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#ldif-example">LDIF Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#acknowledgements">Acknowledgements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ci.html">Continuous Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#what-does-continuous-integration-do">What Does Continuous Integration Do?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#how-often-is-continuous-integration-run">How Often is Continuous Integration Run?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#what-are-the-bits-and-pieces-of-continuous-integration">What are the Bits and Pieces of Continuous Integration?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#continuous-integration-products-vendors">Continuous Integration Products / Vendors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#continuous-integration-and-the-key-characteristics-of-distributed-systems">Continuous Integration and the Key Characteristics of Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#case-study-my-simple-ci-system">Case Study - My Simple CI System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#the-front-page-of-team-city">The Front Page of Team City</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#build-nodes">Build Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="maven.html">Project Build Management With Maven</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#creating-a-maven-project-from-scratch">Creating a Maven Project from Scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#generating-an-eclipse-project-from-a-maven-project">Generating an Eclipse Project from a Maven Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#configuring-eclipse">Configuring Eclipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#running-unit-tests-with-maven">Running Unit tests with Maven</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Writing with Sphinx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#about-sphinx">About Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#additional-resources">Additional Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-sphinx-ubuntu-linux">Setting up Sphinx - Ubuntu Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sphinx-on-non-linux-platforms">Sphinx on non-Linux Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-sphinx-mac-osx-using-homebrew-instead-of-macports">Setting up Sphinx - Mac OSX (Using HomeBrew instead of MacPorts)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-sphinx-windows">Setting up Sphinx - Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#setting-up-sphinx-in-a-python-virtualenv">Setting up Sphinx in a Python virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#authoring-in-sphinx">Authoring in Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clocks.html">Clocks and Synchronization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#what-is-time-some-physics">What is Time? Some Physics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#time-and-computation">Time and Computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#physical-clocks">Physical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#physical-clocks-multiple-systems">Physical Clocks - Multiple Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#clock-synchronization">Clock Synchronization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#clocks-synchronization-and-reliability">Clocks Synchronization and Reliability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#lamports-logical-clocks">Lamport’s Logical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#implementing-lamports-logical-clocks">Implementing Lamport’s Logical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#limitations-of-lamports-logical-clocks">Limitations of Lamport’s Logical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#vector-clocks">Vector Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#implementing-vector-clocks">Implementing Vector Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#so-what-did-we-get-out-of-all-of-this">So... What Did We Get Out of All of This?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dns.html">Domain Name Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpi.html">Message Passing Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corba.html">Object Brokers and CORBA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest.html">REST and Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nosql.html">NoSQL and Sharding</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lectures.html">Legacy Lectures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#software">Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#networking-overview">Networking Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#threads-and-processes">Threads and Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#filesystems">Filesystems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#filesystems-research-at-luc">Filesystems Research at LUC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#grids-and-clouds">Grids and Clouds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#message-passing-messaging-middleware">Message Passing / Messaging Middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#distributed-object-programming">Distributed Object Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#modern-distributed-databases">Modern Distributed Databases</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Writing with Sphinx</a><ul>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#about-sphinx">About Sphinx</a></li>
+<li><a class="reference internal" href="#additional-resources">Additional Resources</a></li>
+<li><a class="reference internal" href="#setting-up-sphinx-ubuntu-linux">Setting up Sphinx - Ubuntu Linux</a></li>
+<li><a class="reference internal" href="#sphinx-on-non-linux-platforms">Sphinx on non-Linux Platforms</a></li>
+<li><a class="reference internal" href="#setting-up-sphinx-mac-osx-using-homebrew-instead-of-macports">Setting up Sphinx - Mac OSX (Using HomeBrew instead of MacPorts)</a></li>
+<li><a class="reference internal" href="#setting-up-sphinx-windows">Setting up Sphinx - Windows</a></li>
+<li><a class="reference internal" href="#setting-up-sphinx-in-a-python-virtualenv">Setting up Sphinx in a Python virtualenv</a></li>
+<li><a class="reference internal" href="#authoring-in-sphinx">Authoring in Sphinx</a></li>
+<li><a class="reference internal" href="#examples">Examples</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="maven.html" title="Previous Chapter: Project Build Management With Maven">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+  </li>
+  <li>
+    <a href="clocks.html" title="Next Chapter: Clocks and Synchronization">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/sphinx.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="writing-with-sphinx">
+<h1>Writing with Sphinx<a class="headerlink" href="#writing-with-sphinx" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<p>Common document models such as Rich Text Format, or Microsoft Word formats are based around one properly encoded file or around a compressed archive containing several folders and files. In both cases, to the user, a single file is presented. This file will contain all text, formatting metadata, and non text objects such as pictures.</p>
+<p>Alternatively, other document models like those used in LaTeX, Pandoc, Sphinx, and similar systems allow/require the author to create the individual parts of a document in separate files and typically with separate software packages. Theses systems consume these individual files to create a final document in one or more possible formats.</p>
+<p>The first model often has the advantage of WYSIWYG (What You See Is What You Get) editors, and have all document data managed through one program that has one set of paradigms. This is a great way to go for many types of document authoring. The approach is simple to understand and the tools are relatively easy to use.</p>
+<p>The second model often does not have a WYSIWYG editing experience. It, however allows you to use separate programs to manage each part of your document. For example, creating diagrams, authoring code, collecting tables of data, can all be done in a more comfortable way in non-text editor programs. This model also allows for a great deal of distributed authoring. When authoring books, it is possible for several contributors to work on the same document in parallel by working on separate files that contain different chapters of the document&#8217;s text. Many of these tools also allow document authors to create several precisely formatted documents from one source of authored text and supplemental objects. For example, it is possible in Pandoc to create a paper formatted to the IEEE standard, a book chapter, and a webpage all by running the pandoc software with different arguments.</p>
+</div>
+<div class="section" id="about-sphinx">
+<h2>About Sphinx<a class="headerlink" href="#about-sphinx" title="Permalink to this headline">¶</a></h2>
+<p>Sphinx makes use of Restructured Text. A great explanation of reST can be found on WikiPedia here: <a class="reference external" href="http://en.wikipedia.org/wiki/ReStructuredText">http://en.wikipedia.org/wiki/ReStructuredText</a>. Essentially restructured text allows the user to write text in plain ASCII using ASCII representations of common formatting such as underlines, bullets, numbered lists, and others. Sphinx can take this restructured text and translate it into a document that has the same kind of formatting but in a way that is native to that document format.</p>
+<p>We note that Sphinx is not the only authoring framework of its kind. We use other tools based on a similar design for different situations. As examples:</p>
+<ul class="simple">
+<li><a class="reference external" href="http://jekyllrb.com/">Jekyll</a> is a framework based on <a class="reference external" href="http://daringfireball.net/projects/markdown/">Markdown</a> (an alternative to reStructuredText) for static website generation. We use this for maintaining sites like <a class="reference external" href="http://thiruvathukal.com">http://thiruvathukal.com</a>. While awesome in general, it is not the best solution when you want the ability to author documents intended for print (PDF) and e-reading (ePub). Sphinx does all of the above, so to speak.</li>
+<li><a class="reference external" href="http://www.latex-project.org/">LaTeX</a> itself could be used to author the content directly. LaTeX does a delightful job at its core competency, which is <em>typesetting</em>, which is clearly a relic of the print era. With a number of supplementatal tools, we can go to other formats. However, LaTeX has a rather steep learning curve for new users and is much more complex than reStructuredText and Markdown.</li>
+<li><a class="reference external" href="http://johnmacfarlane.net/pandoc/">Pandoc</a> is a delightful tool that can target all of the different formats as Sphinx does. In fact, it generates some of the <em>cleanest</em> output we&#8217;ve seen from any tool. Unlike Sphinx, however, it lacks innate support for writing chapter-oriented works (a concept we still find useful) and also suffers from the drawback of making it virtually impossible to externalize code examples.</li>
+</ul>
+<p>We think you&#8217;ll find Sphinx as enjoyable as we do and might even wonder how it is possible to organize a meaningful book without support for its core ideas (especially books having code examples and mathematics!)</p>
+</div>
+<div class="section" id="additional-resources">
+<h2>Additional Resources<a class="headerlink" href="#additional-resources" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ol class="arabic simple">
+<li><a class="reference external" href="http://sphinx-doc.org/rest.html">http://sphinx-doc.org/rest.html</a></li>
+<li><a class="reference external" href="http://sphinx-doc.org/tutorial.html">http://sphinx-doc.org/tutorial.html</a></li>
+<li><a class="reference external" href="http://pythonhosted.org/an_example_pypi_project/sphinx.html">http://pythonhosted.org/an_example_pypi_project/sphinx.html</a></li>
+</ol>
+</div></blockquote>
+</div>
+<div class="section" id="setting-up-sphinx-ubuntu-linux">
+<h2>Setting up Sphinx - Ubuntu Linux<a class="headerlink" href="#setting-up-sphinx-ubuntu-linux" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Run the following commands to get a Sphinx environment setup on your Linux machine (as the super user):</dt>
+<dd><ol class="first last arabic simple">
+<li>apt-get update</li>
+<li>apt-get install python python-setuptools python-pip make</li>
+<li>easy_install -U sphinx</li>
+<li>pip install sphinx_bootstrap_theme</li>
+</ol>
+</dd>
+</dl>
+<p>If those commands all succeed, you will have sphinx installed. To test if the command is installed you can run &#8220;sphinx-build&#8221;. This will launch the sphinx program. It will print its version and possible arguments.</p>
+</div>
+<div class="section" id="sphinx-on-non-linux-platforms">
+<h2>Sphinx on non-Linux Platforms<a class="headerlink" href="#sphinx-on-non-linux-platforms" title="Permalink to this headline">¶</a></h2>
+<p>If you are setting up Sphinx on Linux, you will by far have the easiest time getting things up and running. So, if that is an option for you, your best bet is to pursue it. Sphinx is supported on other platforms such as Windows and OSX, but the installation process isn&#8217;t as reliable as it is on Linux and might take some more effort to get it running properly.</p>
+</div>
+<div class="section" id="setting-up-sphinx-mac-osx-using-homebrew-instead-of-macports">
+<h2>Setting up Sphinx - Mac OSX (Using HomeBrew instead of MacPorts)<a class="headerlink" href="#setting-up-sphinx-mac-osx-using-homebrew-instead-of-macports" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Getting things up and running on OSX takes a bit more work. Here&#8217;s essentially what needs to be done:</dt>
+<dd><ol class="first last arabic simple">
+<li>Install Mac HomeBrew - <a class="reference external" href="http://brew.sh">http://brew.sh</a></li>
+<li>Using the brew command from HomeBrew, install python, python-setuptools and python-pip</li>
+<li>easy_install -U sphinx</li>
+<li>pip install sphinx_bootstrap_theme.</li>
+</ol>
+</dd>
+</dl>
+</div>
+<div class="section" id="setting-up-sphinx-windows">
+<h2>Setting up Sphinx - Windows<a class="headerlink" href="#setting-up-sphinx-windows" title="Permalink to this headline">¶</a></h2>
+<p>The Sphinx documentation is a great resource for installing on Windows. You can find it here - <a class="reference external" href="http://sphinx-doc.org/latest/install.html">http://sphinx-doc.org/latest/install.html</a></p>
+</div>
+<div class="section" id="setting-up-sphinx-in-a-python-virtualenv">
+<h2>Setting up Sphinx in a Python virtualenv<a class="headerlink" href="#setting-up-sphinx-in-a-python-virtualenv" title="Permalink to this headline">¶</a></h2>
+<p>If you are working with a <em>copy</em> or <em>clone</em> of <a class="reference external" href="https://bitbucket.org/loyolachicagocs_books/distributedsystems">https://bitbucket.org/loyolachicagocs_books/distributedsystems</a>, you might notice that the top level folder, contains a shell script, <code class="docutils literal"><span class="pre">sphinx.sh</span></code> that drives the Sphinx build process.</p>
+<div class="highlight-python"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre>1
+2
+3
+4
+5
+6
+7
+8</pre></div></td><td class="code"><div class="highlight"><pre>#! /bin/bash
+
+[ -f ~/.env/sphinx/bin/activate ] &amp;&amp; . ~/.env/sphinx/bin/activate
+
+rm -rf build/
+make html
+make epub
+make LATEXOPTS=&#39; -interaction=batchmode &#39; latexpdf
+</pre></div>
+</td></tr></table></div>
+<p>In this example, there is the following line that checks (my setup) for the presence of a Python virtual environment.</p>
+<div class="highlight-python"><div class="highlight"><pre>[ -f ~/.env/sphinx/bin/activate ] &amp;&amp; . ~/.env/sphinx/bin/activate
+</pre></div>
+</div>
+<p>What this achieves is to give you your own Python interpreter and set of libraries and Python tools if the virtualenv can be successfully activated.</p>
+<p>On George&#8217;s system, observe what the following does:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ . ~/.env/sphinx/bin/activate
+(sphinx)atomium:distributedsystems gkt$ which python
+/Users/gkt/.env/sphinx/bin/python
+(sphinx)atomium:distributedsystems gkt$ which sphinx-build
+/Users/gkt/.env/sphinx/bin/sphinx-build
+</pre></div>
+</div>
+<p>First, ensure the <code class="docutils literal"><span class="pre">virtualenv</span></code> command is present:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ pip install virtualenv
+</pre></div>
+</div>
+<p>Create the virtualenv. It can be anywhere you like, but I keep all of my virtualenv instances in the ~/.env directory (.env in my home folder). You can put it anywhere you like:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ virtualenv ~/.env/sphinx
+</pre></div>
+</div>
+<p>This generates a bunch of output:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ virtualenv ~/.env/sphinx
+New python executable in /Users/gkt/.env/sphinx/bin/python2.7
+Also creating executable in /Users/gkt/.env/sphinx/bin/python
+Installing Setuptools..............................................................................................................................................................................................................................done.
+Installing Pip.....................................................................................................................................................................................................................................................................................................................................done.
+</pre></div>
+</div>
+<p>Activate the virtualenv:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ . ~/.env/sphinx/bin/activate
+(sphinx)imac-g5:~ gkt$
+</pre></div>
+</div>
+<p>Install the <code class="docutils literal"><span class="pre">sphinx</span></code> and <code class="docutils literal"><span class="pre">sphinx_bootstrap_theme</span></code>. Both of these are needed to rebuild the course notes.</p>
+<div class="highlight-python"><div class="highlight"><pre>$ pip install sphinx sphinx_bootstrap_theme
+
+(you&#39;ll get a LOT of output, not shown here but ending with the following)
+
+Successfully installed sphinx sphinx-bootstrap-theme Pygments Jinja2 docutils markupsafe
+Cleaning up...
+</pre></div>
+</div>
+<p>You are unlikely to have any problems if you do this on OS X or Windows. If you are on Linux, it is likely that you need some additional packages (already covered in our Ubuntu section above).</p>
+<p>virtualenv has the added advantage of allowing you to do Python experimentation with as little use of the <em>root</em> user as possible. Once you have it going, you&#8217;ll come to realize that you can&#8217;t live without it, especially when doing Python work!</p>
+</div>
+<div class="section" id="authoring-in-sphinx">
+<h2>Authoring in Sphinx<a class="headerlink" href="#authoring-in-sphinx" title="Permalink to this headline">¶</a></h2>
+<p>An excellent way to learn Sphinx is to look at existing documents. The concurrency lecture has several example usages of reST: <a class="reference external" href="http://distributed.cs.luc.edu/html/_sources/concurrency.txt">http://distributed.cs.luc.edu/html/_sources/concurrency.txt</a>. The entire source repository for the distributed systems lecture notes is available on BitBucket here - <a class="reference external" href="https://bitbucket.org/loyolachicagocs_books/distributedsystems">https://bitbucket.org/loyolachicagocs_books/distributedsystems</a>. You can download the source, and see an entire working example.</p>
+<p>You are encouraged to look through the <a class="reference external" href="http://sphinx-doc.org/">Sphinx documentation</a> for full details.</p>
+</div>
+<div class="section" id="examples">
+<h2>Examples<a class="headerlink" href="#examples" title="Permalink to this headline">¶</a></h2>
+<p>Creating a Heading:</p>
+<div class="highlight-python"><div class="highlight"><pre>This Is a Heading Underlined With Dashes To Make It A Heading
+-------------------------------------------------------------
+</pre></div>
+</div>
+<p>Creating a Heading with bullets under it</p>
+<div class="highlight-python"><div class="highlight"><pre>My List (notice indentation and space after dash)
+-------------------------------------------------
+        - Item 1
+        - Item 2
+</pre></div>
+</div>
+<p>Creating a heading with a numbered list under it (numbers are generated by sphinx automatically)</p>
+<div class="highlight-python"><div class="highlight"><pre>My Numbered List (notice space after the pound and dot)
+-------------------------------------------------------
+        #. First Item
+        #. Second Item
+        #. Third Item
+</pre></div>
+</div>
+<p>Including a figure from a PNG image</p>
+<div class="highlight-python"><div class="highlight"><pre>.. figure:: figures/figure01.png
+        :align: center
+        :width: 600px
+        :alt: Figure 01
+</pre></div>
+</div>
+<p>Creating an inline code snippet (Approach 1) (notice the blank line after the two colons and the indentation)</p>
+<div class="highlight-python"><div class="highlight"><pre>::
+        #include &lt;stdio.h&gt;
+
+        int main() {
+                printf(&quot;Hello World\n);
+                return 0;
+        }
+</pre></div>
+</div>
+<p>Creating an inline code snippet (Approach 2) (this approach uses an actual code file, it will start the snippet from the line in the file matching the text after the &#8220;start-after&#8221; and end the snippet before the &#8220;end-before&#8221;. Your best bet is to add the pattern .. in this case begin-main-function and end-main-function as comments in your example code file.)</p>
+<div class="highlight-python"><div class="highlight"><pre>.. literalinclude:: examples/main.c
+        :start-after: begin-main-function
+        :end-before: end-main-function
+        :linenos:
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, George K. Thiruvathukal and Joe Kaylor.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

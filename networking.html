@@ -1,0 +1,1698 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Networking Primer &mdash; Distributed Systems alpha documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.2.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Distributed Systems alpha documentation" href="index.html" />
+    <link rel="next" title="Concurrency and Threads" href="concurrency.html" />
+    <link rel="prev" title="Introduction and Issues" href="issues.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+  
+
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          COMP 339-439</a>
+        <span class="navbar-text navbar-version pull-left"><b>v0.5</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="genindex.html">Index</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Introduction and Issues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#what-is-a-distributed-system">What is a distributed system?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#illustration">Illustration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#advantages-of-distributed-systems-vs-centralized">Advantages of Distributed Systems vs. Centralized</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#advantages-of-distributed-systems-vs-standalones">Advantages of Distributed Systems vs. Standalones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#disadvantages-of-distributed-systems">Disadvantages of Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#key-characteristics">Key Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#resource-sharing">Resource Sharing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#resources-must-be-managed">Resources Must be Managed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#openness">Openness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#open-distributed-systems">Open Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#concurrency">Concurrency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#scalability">Scalability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#fault-tolerance">Fault Tolerance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#transparency">Transparency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#design-issues">Design Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#issues-arising-from-distributed-systems">Issues arising from Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#naming">Naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#naming-name-resolution">Naming - Name Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#naming-design-considerations">Naming - Design Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#communication">Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#types-of-communication">Types of Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#client-server-communication">Client-Server Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#id1">Client-Server Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#group-multicast">Group Multicast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#software-structure">Software Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#distributed-system-software-structure">Distributed System Software Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#consistency-management">Consistency Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#caching">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#consistency">Consistency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#workload-allocation">Workload Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#processor-pool-model">Processor Pool Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#quality-of-service">Quality-of-Service</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Networking Primer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#networks">Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#many-types-of-networks">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id1">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id2">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#internetworks">Internetworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performance-issues">Performance Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-a-typical-campus-network">Example- A Typical Campus Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#network-topologies">Network Topologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id3">Network Topologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#a-network-is-not-an-island">A Network is not an Island</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#design-issues-in-layers">Design Issues In Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#protocols-are-divided-into-layers">Protocols are divided into layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#physical-layer">Physical Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#data-link-layer">Data Link Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-network-layer">The Network Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-transport-layer">The Transport Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#the-session-presentation-layers">The Session &amp; Presentation Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#application-layer">Application Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#interprocess-communication">Interprocess Communication:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#reliability">Reliability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mapping-data-to-messages">Mapping Data to Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#marshaling">Marshaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#case-study-unix-interprocess-communication-ipc">Case Study: UNIX Interprocess Communication (IPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#example-simple-tcp-messaging-framework-from-hpjpc">Example - Simple TCP Messaging Framework (from HPJPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#message-class">Message class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#messageclient-class">MessageClient class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#messageserver-class">MessageServer class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#messageserverdispatcher-class">MessageServerDispatcher class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dateservice-using-message-classes-interfaces">DateService using Message Classes/Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#dateclient-using-message-classes-interfaces">DateClient using Message Classes/Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sockets-communication-using-datagram">Sockets Communication Using Datagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#stream-communication">Stream Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#remote-procedure-call">Remote Procedure Call</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#remote-procedure-call-rpc">Remote Procedure Call (RPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#observations">Observations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpc">RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpc-mechanisms">RPC Mechanisms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#rpc-steps">RPC Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#design-issues">Design Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#parameter-passing">Parameter Passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id4">Parameter Passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#binding">Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#use-of-specification">Use of Specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#locating-the-server">Locating the Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#how-to-handle-failures">How to Handle Failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#client-cannot-locate-server">Client Cannot Locate Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lost-request-message">Lost Request Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lost-reply-message">Lost Reply Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id5">Lost Reply Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#server-crashes">Server Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id6">Server Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#client-crashes">Client Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#id7">Client Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#acknowledgments">Acknowledgments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#flow-control">Flow Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#performance">Performance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">Concurrency and Threads</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#threads-vs-processes">Threads vs Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#what-are-processes-threads">What are Processes, Threads?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#common-threading-use-cases">Common Threading Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#mutual-exclusion">Mutual Exclusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#tools-for-achieving-mutual-exclusion">Tools for Achieving Mutual Exclusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#mutex-example-java">Mutex Example/Java</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#semaphore-example">Semaphore Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#barrier">Barrier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#deadlock-a-classic-problem">Deadlock - a classic problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#fork">Fork</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#diner0">Diner0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#diners0">Diners0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#diners1-eliminating-deadlock-with-resource-enumeration">Diners1 - eliminating deadlock with resource enumeration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#execution-with-deadlock">Execution - With Deadlock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#deadlock-free-version">Deadlock-Free Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#common-data-structures-in-concurrent-programming">Common Data Structures in Concurrent Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#design-considerations">Design Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#kernel-threads-vs-user-mode-threads">Kernel Threads vs User Mode Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#concurrent-file-copy-example">Concurrent File Copy Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#sequential-file-copy">Sequential File Copy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#concurrent-file-copy-organization">Concurrent File Copy Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html">Distributed Systems and Storage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#types-of-non-local-storage">Types of Non-Local Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#how-do-we-evaluate-storage-systems">How Do We Evaluate Storage Systems?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#storage-devices">Storage Devices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#storage-and-failure">Storage and Failure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#maximizing-availability-raid">Maximizing Availability - RAID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid">RAID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid-0">RAID - 0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid-1">RAID - 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid-5">RAID - 5</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#local-storage">Local Storage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#implementing-files-and-folders">Implementing Files and Folders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#inodes">Inodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#inodes-indirect-blocks">Inodes - Indirect Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#block-caches">Block Caches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#folders-and-path-traversal">Folders and Path Traversal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#virtual-filesystems-vfs">Virtual Filesystems / VFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#id1">Virtual Filesystems / VFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#virtual-filesystems-and-stacking">Virtual Filesystems and Stacking</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#distributed-filesystems">Distributed Filesystems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#file-service-model">File Service Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#directory-service">Directory Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#naming-transparency">Naming Transparency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#file-sharing-semantics">File Sharing Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#unix-semantics">UNIX Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#more-semantics">More Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#distributed-file-system-implementation">Distributed File System Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#system-structure">System Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#id2">Directory Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#stateless-versus-stateful">Stateless versus Stateful</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#caching">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#caching-server">Caching - Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#caching-client">Caching - Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#client-cache-consistency">Client - Cache Consistency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#client-cache-consistency-other-options">Client - Cache Consistency - Other Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication">Replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication-update-protocols">Replication - Update Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication-voting-algorithm">Replication - Voting Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication-general-quorum-algorithm">Replication - General Quorum Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#case-study-sun-nfs">Case Study - SUN NFS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#sun-nfs-implementation">SUN NFS - Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="directories.html">Directories and LDAP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#what-is-a-directory">What is a Directory?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#what-is-not-a-directory">What is NOT a Directory?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#types">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#characteristics-of-directories">Characteristics of Directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#evolution-of-directories">Evolution of Directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#so-what-is-ldap-exactly">So what is LDAP, exactly?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#early-ldap-implementations">Early LDAP Implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#slapd-stand-alone-ldap-daemon">SLAPD: Stand-alone LDAP Daemon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#slapd-continued">SLAPD: Continued</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#ldap-client-server-exchange-protocol">LDAP Client-Server Exchange Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#example-ldap-usage">Example LDAP Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#schemas">Schemas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#attributes-and-objectclasses">attributes and objectclasses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#ldap-tree-topology">LDAP Tree Topology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#network-architecture">Network Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#distributed-ldap-server-model">Distributed LDAP Server Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#ldif-example">LDIF Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#acknowledgements">Acknowledgements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ci.html">Continuous Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#what-does-continuous-integration-do">What Does Continuous Integration Do?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#how-often-is-continuous-integration-run">How Often is Continuous Integration Run?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#what-are-the-bits-and-pieces-of-continuous-integration">What are the Bits and Pieces of Continuous Integration?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#continuous-integration-products-vendors">Continuous Integration Products / Vendors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#continuous-integration-and-the-key-characteristics-of-distributed-systems">Continuous Integration and the Key Characteristics of Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#case-study-my-simple-ci-system">Case Study - My Simple CI System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#the-front-page-of-team-city">The Front Page of Team City</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#build-nodes">Build Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="maven.html">Project Build Management With Maven</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#creating-a-maven-project-from-scratch">Creating a Maven Project from Scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#generating-an-eclipse-project-from-a-maven-project">Generating an Eclipse Project from a Maven Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#configuring-eclipse">Configuring Eclipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#running-unit-tests-with-maven">Running Unit tests with Maven</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">Writing with Sphinx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#about-sphinx">About Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#additional-resources">Additional Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#setting-up-sphinx-ubuntu-linux">Setting up Sphinx - Ubuntu Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#sphinx-on-non-linux-platforms">Sphinx on non-Linux Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#setting-up-sphinx-mac-osx-using-homebrew-instead-of-macports">Setting up Sphinx - Mac OSX (Using HomeBrew instead of MacPorts)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#setting-up-sphinx-windows">Setting up Sphinx - Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#setting-up-sphinx-in-a-python-virtualenv">Setting up Sphinx in a Python virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#authoring-in-sphinx">Authoring in Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clocks.html">Clocks and Synchronization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#what-is-time-some-physics">What is Time? Some Physics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#time-and-computation">Time and Computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#physical-clocks">Physical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#physical-clocks-multiple-systems">Physical Clocks - Multiple Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#clock-synchronization">Clock Synchronization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#clocks-synchronization-and-reliability">Clocks Synchronization and Reliability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#lamports-logical-clocks">Lamport’s Logical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#implementing-lamports-logical-clocks">Implementing Lamport’s Logical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#limitations-of-lamports-logical-clocks">Limitations of Lamport’s Logical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#vector-clocks">Vector Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#implementing-vector-clocks">Implementing Vector Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#so-what-did-we-get-out-of-all-of-this">So... What Did We Get Out of All of This?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dns.html">Domain Name Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpi.html">Message Passing Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corba.html">Object Brokers and CORBA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest.html">REST and Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nosql.html">NoSQL and Sharding</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lectures.html">Legacy Lectures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#software">Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#networking-overview">Networking Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#threads-and-processes">Threads and Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#filesystems">Filesystems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#filesystems-research-at-luc">Filesystems Research at LUC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#grids-and-clouds">Grids and Clouds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#message-passing-messaging-middleware">Message Passing / Messaging Middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#distributed-object-programming">Distributed Object Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#modern-distributed-databases">Modern Distributed Databases</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Networking Primer</a><ul>
+<li><a class="reference internal" href="#networks">Networks</a></li>
+<li><a class="reference internal" href="#many-types-of-networks">Many Types of Networks</a></li>
+<li><a class="reference internal" href="#id1">Many Types of Networks</a></li>
+<li><a class="reference internal" href="#id2">Many Types of Networks</a></li>
+<li><a class="reference internal" href="#internetworks">Internetworks</a></li>
+<li><a class="reference internal" href="#performance-issues">Performance Issues</a></li>
+<li><a class="reference internal" href="#example-a-typical-campus-network">Example- A Typical Campus Network</a></li>
+<li><a class="reference internal" href="#network-topologies">Network Topologies</a></li>
+<li><a class="reference internal" href="#id3">Network Topologies</a></li>
+<li><a class="reference internal" href="#a-network-is-not-an-island">A Network is not an Island</a></li>
+<li><a class="reference internal" href="#design-issues-in-layers">Design Issues In Layers</a></li>
+<li><a class="reference internal" href="#protocols-are-divided-into-layers">Protocols are divided into layers</a></li>
+<li><a class="reference internal" href="#physical-layer">Physical Layer</a></li>
+<li><a class="reference internal" href="#data-link-layer">Data Link Layer</a></li>
+<li><a class="reference internal" href="#the-network-layer">The Network Layer</a></li>
+<li><a class="reference internal" href="#the-transport-layer">The Transport Layer</a></li>
+<li><a class="reference internal" href="#the-session-presentation-layers">The Session &amp; Presentation Layers</a></li>
+<li><a class="reference internal" href="#application-layer">Application Layer</a></li>
+<li><a class="reference internal" href="#interprocess-communication">Interprocess Communication:</a></li>
+<li><a class="reference internal" href="#reliability">Reliability</a></li>
+<li><a class="reference internal" href="#mapping-data-to-messages">Mapping Data to Messages</a></li>
+<li><a class="reference internal" href="#marshaling">Marshaling</a></li>
+<li><a class="reference internal" href="#case-study-unix-interprocess-communication-ipc">Case Study: UNIX Interprocess Communication (IPC)</a></li>
+<li><a class="reference internal" href="#example-simple-tcp-messaging-framework-from-hpjpc">Example - Simple TCP Messaging Framework (from HPJPC)</a></li>
+<li><a class="reference internal" href="#message-class">Message class</a></li>
+<li><a class="reference internal" href="#messageclient-class">MessageClient class</a></li>
+<li><a class="reference internal" href="#messageserver-class">MessageServer class</a></li>
+<li><a class="reference internal" href="#messageserverdispatcher-class">MessageServerDispatcher class</a></li>
+<li><a class="reference internal" href="#dateservice-using-message-classes-interfaces">DateService using Message Classes/Interfaces</a></li>
+<li><a class="reference internal" href="#dateclient-using-message-classes-interfaces">DateClient using Message Classes/Interfaces</a></li>
+<li><a class="reference internal" href="#sockets-communication-using-datagram">Sockets Communication Using Datagram</a></li>
+<li><a class="reference internal" href="#stream-communication">Stream Communication</a></li>
+<li><a class="reference internal" href="#remote-procedure-call">Remote Procedure Call</a></li>
+<li><a class="reference internal" href="#remote-procedure-call-rpc">Remote Procedure Call (RPC)</a></li>
+<li><a class="reference internal" href="#observations">Observations</a></li>
+<li><a class="reference internal" href="#rpc">RPC</a></li>
+<li><a class="reference internal" href="#rpc-mechanisms">RPC Mechanisms</a></li>
+<li><a class="reference internal" href="#rpc-steps">RPC Steps</a></li>
+<li><a class="reference internal" href="#design-issues">Design Issues</a></li>
+<li><a class="reference internal" href="#parameter-passing">Parameter Passing</a></li>
+<li><a class="reference internal" href="#id4">Parameter Passing</a></li>
+<li><a class="reference internal" href="#binding">Binding</a></li>
+<li><a class="reference internal" href="#use-of-specification">Use of Specification</a></li>
+<li><a class="reference internal" href="#locating-the-server">Locating the Server</a></li>
+<li><a class="reference internal" href="#how-to-handle-failures">How to Handle Failures</a></li>
+<li><a class="reference internal" href="#client-cannot-locate-server">Client Cannot Locate Server</a></li>
+<li><a class="reference internal" href="#lost-request-message">Lost Request Message</a></li>
+<li><a class="reference internal" href="#lost-reply-message">Lost Reply Message</a></li>
+<li><a class="reference internal" href="#id5">Lost Reply Message</a></li>
+<li><a class="reference internal" href="#server-crashes">Server Crashes</a></li>
+<li><a class="reference internal" href="#id6">Server Crashes</a></li>
+<li><a class="reference internal" href="#client-crashes">Client Crashes</a></li>
+<li><a class="reference internal" href="#id7">Client Crashes</a></li>
+<li><a class="reference internal" href="#acknowledgments">Acknowledgments</a></li>
+<li><a class="reference internal" href="#flow-control">Flow Control</a></li>
+<li><a class="reference internal" href="#performance">Performance</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="issues.html" title="Previous Chapter: Introduction and Issues">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+  </li>
+  <li>
+    <a href="concurrency.html" title="Next Chapter: Concurrency and Threads">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/networking.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="networking-primer">
+<h1>Networking Primer<a class="headerlink" href="#networking-primer" title="Permalink to this headline">¶</a></h1>
+<ul class="simple">
+<li>Introduction to networks</li>
+<li>Protocols and Layers</li>
+<li>Interprocess Communication<ul>
+<li>Sockets</li>
+<li>RPC</li>
+</ul>
+</li>
+<li>Network Case Studies (Ethernet, ATM)</li>
+<li>Protocol Case Studies (TCP/IP, Client-Server)</li>
+</ul>
+<p>Additional reading:</p>
+<ul class="simple">
+<li>See <a class="reference external" href="http://intronetworks.cs.luc.edu/html">http://intronetworks.cs.luc.edu/html</a> by our colleague, Dr. Peter Dordal.</li>
+</ul>
+<div class="section" id="networks">
+<h2>Networks<a class="headerlink" href="#networks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Communication between semi-autonomous computers</li>
+<li>Attached to host system by an adapter</li>
+</ul>
+<p>FIGURE</p>
+<ul class="simple">
+<li>Communication networks provide an infrastructure for communication in distributed systems</li>
+<li>Infrastructure is required at various levels<ul>
+<li>Cables/wires</li>
+<li>Switches</li>
+<li>Interfaces</li>
+<li>Software components at various levels: protocol managers, network managers</li>
+</ul>
+</li>
+<li>The entire collection of the above is a “communication system”</li>
+</ul>
+</div>
+<div class="section" id="many-types-of-networks">
+<h2>Many Types of Networks<a class="headerlink" href="#many-types-of-networks" title="Permalink to this headline">¶</a></h2>
+<dl class="docutils">
+<dt>Physical Media</dt>
+<dd><ul class="first last">
+<li><p class="first">copper wires (Ethernet, RS232-C, V.32, etc.)</p>
+</li>
+<li><p class="first">fiber optics (ATM, FDDI)</p>
+</li>
+<li><p class="first">air (IR, Radio, micro-wave)</p>
+</li>
+<li><p class="first">Speeds (link not aggregate)</p>
+</li>
+<li><dl class="first docutils">
+<dt>low</dt>
+<dd><ul class="first last simple">
+<li>modems (few k bits/sec)</li>
+<li>pagers</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>medium</dt>
+<dd><ul class="first last simple">
+<li>Ethernet (10-100 Mbps)</li>
+<li>Token Ring (10 Mbps)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>high</dt>
+<dd><ul class="first last simple">
+<li>ATM (155-655 Mbps)</li>
+<li>Myrinet (600 Mbps)</li>
+<li>SONET (OC-48 - 2488 Mbps)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</div>
+<div class="section" id="id1">
+<h2>Many Types of Networks<a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Local Area Networks</dt>
+<dd><ul class="first last simple">
+<li>Relatively high-speed (oh yeah!)</li>
+<li>Normally single building, campus, Office</li>
+<li>Most of the time direct (does not mean all-to-all) connection between computers</li>
+<li>Low Latency</li>
+<li>Eg., Ethernet, FDDI, IBM Token Ring</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Wide Area Networks</dt>
+<dd><ul class="first last simple">
+<li>Msgs at lower speeds between systems separated by large distances</li>
+<li>Communication circuits connected by “Packet switching” computers, that also manage the network</li>
+<li>Messages are routed by “packet switches”</li>
+<li>E.g., ISDN, BISDN, ATM</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="id2">
+<h2>Many Types of Networks<a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Metropolitan Area Networks (MANs)</dt>
+<dd><ul class="first last simple">
+<li>within cities, towns, use fiber-optics cables</li>
+<li>recent, to carry voice, video...</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="internetworks">
+<h2>Internetworks<a class="headerlink" href="#internetworks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Remember - distributed systems require extensibility</li>
+<li>Must be able to connect/link networks together =&gt; Internetworks</li>
+<li>Normally achieved by linking component networks with dedicated routers OR</li>
+<li>by connecting them by general purpose computers called “gateways”</li>
+<li>protocols that support addressing and transmission between these networks are added</li>
+<li>Internet is a GIANT Wide-Area-Network connecting thousands of component networks.</li>
+</ul>
+</div>
+<div class="section" id="performance-issues">
+<h2>Performance Issues<a class="headerlink" href="#performance-issues" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Performance parameters</dt>
+<dd><ul class="first last">
+<li><p class="first">Latency - time needed to transfer an empty message between two systems - normally measures software delay and transit time</p>
+</li>
+<li><dl class="first docutils">
+<dt>What is software delay?</dt>
+<dd><ul class="first last simple">
+<li>time to access the network, I.e., put bits on the network from the time a message is sent by the application and time to retrieve the bits and supply the msg to the receiver</li>
+<li>software delay can be quite large because message has to go through several layers (later)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Bandwidth (or Data Transfer Rate) seen by a message</dt>
+<dd><ul class="first last simple">
+<li>rate at which data is transferred over the network once the transmission started</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Network Bandwidth - Volume of traffic per unit time transferred across the network</p>
+</li>
+<li><p class="first">Quality of Service (QoS) - other guarantees such as delay and b/w guarantees, reliability and availability guarantees</p>
+</li>
+<li><p class="first">Assuming no delays due to congestion</p>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="example-a-typical-campus-network">
+<h2>Example- A Typical Campus Network<a class="headerlink" href="#example-a-typical-campus-network" title="Permalink to this headline">¶</a></h2>
+<p>FIGURE</p>
+</div>
+<div class="section" id="network-topologies">
+<h2>Network Topologies<a class="headerlink" href="#network-topologies" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">How are the communicating objects connected</p>
+</li>
+<li><p class="first">Fully connected - link between all sites</p>
+</li>
+<li><dl class="first docutils">
+<dt>Partially connected</dt>
+<dd><ul class="first last simple">
+<li>links between subset of sites</li>
+<li>can be an arbitrary graph</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Hierarchical networks</dt>
+<dd><ul class="first last simple">
+<li>network topology looks like a tree</li>
+<li>internal nodes route messages between different sub-trees</li>
+<li>if an internal node fails, children can not communicate with each other</li>
+<li>star network - hierarchical network with single internal node</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="id3">
+<h2>Network Topologies<a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>FIGURE</p>
+</div>
+<div class="section" id="a-network-is-not-an-island">
+<h2>A Network is not an Island<a class="headerlink" href="#a-network-is-not-an-island" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Reason for networks is to share information</p>
+<blockquote>
+<div><ul>
+<li><p class="first">must be able to communicate in a common language</p>
+</li>
+<li><dl class="first docutils">
+<dt>called protocols</dt>
+<dd><ul class="first last simple">
+<li>The nice thing about protocols is that there are so many of them!</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</li>
+<li><p class="first">Protocols</p>
+<blockquote>
+<div><ul>
+<li><dl class="first docutils">
+<dt>must be unambiguous and followed exactly</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>rule of thumb for good protocol implementations</dt>
+<dd><ul class="first last simple">
+<li>be rigorous is what you generate</li>
+<li>be liberal in what you accept</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>there are many different aspects to protocols</dt>
+<dd><ul class="first last simple">
+<li>electrical through web services</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</li>
+</ul>
+</div>
+<div class="section" id="design-issues-in-layers">
+<h2>Design Issues In Layers<a class="headerlink" href="#design-issues-in-layers" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Rules for data transmission (Protocol)</dt>
+<dd><ul class="first last simple">
+<li>full Vs. half duplex</li>
+<li>error control (detection, correction, etc.)</li>
+<li>flow control (rate matching, overuse of shared resources)</li>
+<li>message order (do things arrive in the same order as sent?)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Abstractions for communications</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>end points for communication</dt>
+<dd><ul class="first last simple">
+<li>switches, nodes, processes, threads in a process</li>
+<li>how are these end points named (addresses)?</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">service providers and service users</p>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Service Primitives</dt>
+<dd><ul class="first last simple">
+<li>operations performed by a layer</li>
+<li>events and their actions</li>
+<li>request, indication, response, confirm</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="protocols-are-divided-into-layers">
+<h2>Protocols are divided into layers<a class="headerlink" href="#protocols-are-divided-into-layers" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>ISO - seven layer reference model</dt>
+<dd><ul class="first last simple">
+<li>Application</li>
+<li>Presentation</li>
+<li>Session</li>
+<li>Transport</li>
+<li>Network</li>
+<li>Link</li>
+<li>Physical</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>TCP/IP - four layer model</dt>
+<dd><ul class="first last simple">
+<li>application</li>
+<li>transport</li>
+<li>network (internet)</li>
+<li>link</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="physical-layer">
+<h2>Physical Layer<a class="headerlink" href="#physical-layer" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Goal: Raw bits over a communication channel</p>
+</li>
+<li><dl class="first docutils">
+<dt>Sample Issues:</dt>
+<dd><ul class="first last simple">
+<li>how to encode a 0 Vs. 1?</li>
+<li>what voltage should be used?</li>
+<li>how long does a bit need to be signaled?</li>
+<li>what does the cable, plug, antenna, etc. look like?</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><ul class="first last simple">
+<li>modems</li>
+<li>“knock once for yes, twice for no”</li>
+<li>X.21</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="data-link-layer">
+<h2>Data Link Layer<a class="headerlink" href="#data-link-layer" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Goal: transmit error free frames over the physical link</p>
+</li>
+<li><dl class="first docutils">
+<dt>Sample Issues:</dt>
+<dd><ul class="first last simple">
+<li>how big is a frame?</li>
+<li>can I detect an error in sending the frame?</li>
+<li>what demarks the end of the frame?</li>
+<li>how to control access to a shared channel?</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><ul class="first last simple">
+<li>Ethernet framing</li>
+<li>CSMA/CD</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="the-network-layer">
+<h2>The Network Layer<a class="headerlink" href="#the-network-layer" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Goal: controlling operations of the subset</p>
+</li>
+<li><dl class="first docutils">
+<dt>Sample Issues:</dt>
+<dd><ul class="first last simple">
+<li>how route packets that have to travel several hops?</li>
+<li>control congestion - too many messages at once</li>
+<li>accounting - charge for use of the network</li>
+<li>fragment or combine packets depending on rules of link layer</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><ul class="first last simple">
+<li>IP</li>
+<li>X25</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="the-transport-layer">
+<h2>The Transport Layer<a class="headerlink" href="#the-transport-layer" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Goal: accurately transport session data in order</dt>
+<dd><ul class="first last simple">
+<li>end points are the sending and receiving machines</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Sample Issues:</dt>
+<dd><ul class="first last simple">
+<li>how to order messages and detect duplicates</li>
+<li>error detection (corrupt packets) and retransmission</li>
+<li>connectionless or connection-oriented</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><ul class="first last simple">
+<li>TCP (connection-oriented)</li>
+<li>UDP</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="the-session-presentation-layers">
+<h2>The Session &amp; Presentation Layers<a class="headerlink" href="#the-session-presentation-layers" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Goal: common services shared by several applications</p>
+</li>
+<li><dl class="first docutils">
+<dt>Sample Issues:</dt>
+<dd><ul class="first last simple">
+<li>network representation of bytes, ints, floats, etc.</li>
+<li>encryption?? (this point is subject to lots of debate)</li>
+<li>synchronization</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><ul class="first last simple">
+<li>eXternal Data Representation (XDR)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="application-layer">
+<h2>Application Layer<a class="headerlink" href="#application-layer" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Goal: common types of exchanges standardized</p>
+</li>
+<li><dl class="first docutils">
+<dt>Sample Issues:</dt>
+<dd><ul class="first last simple">
+<li>when sending email, what demarks the subject field</li>
+<li>how to represent cursor movement in a terminal</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Examples:</dt>
+<dd><ul class="first last simple">
+<li>Simple Mail Transport Protocol (SMTP)</li>
+<li>File Transfer Protocol (FTP)</li>
+<li>Hyper-Text Transport Protocol (HTTP)</li>
+<li>Simple Network Management Protocol (SNMP)</li>
+<li>Network File System (NFS)</li>
+<li>Network Time Protocol (NTP)</li>
+<li>Net News Transport Protocol (NNTP)</li>
+<li>X (X Window Protocol)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="interprocess-communication">
+<h2>Interprocess Communication:<a class="headerlink" href="#interprocess-communication" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Sockets &amp; RPC (Basic operations)</dt>
+<dd><ul class="first last simple">
+<li>Send</li>
+<li>Receiver</li>
+<li>Synchronize</li>
+<li>=&gt; Send must specify destination</li>
+<li>=&gt; Clients need to know an identifier for communicating with another process (e.g., server)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="reliability">
+<h2>Reliability<a class="headerlink" href="#reliability" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">&#8220;Unreliable Message&#8221; - single msg sent from sender to recipient without acknowledgment  (e.g., UDP)</p>
+</li>
+<li><p class="first">Processes that use unreliable messages are responsible for enforcing correct/reliable message passing</p>
+</li>
+<li><dl class="first docutils">
+<dt>Reliability introduces overhead</dt>
+<dd><ul class="first last simple">
+<li>need to store state information at the source and destination</li>
+<li>transmit extra messages (e.g., ack)</li>
+<li>latency (for processing information related to reliability)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="mapping-data-to-messages">
+<h2>Mapping Data to Messages<a class="headerlink" href="#mapping-data-to-messages" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Programs have data structures</p>
+</li>
+<li><p class="first">Messages are self-contained sequence of bytes</p>
+</li>
+<li><dl class="first docutils">
+<dt>=&gt; For communication</dt>
+<dd><ul class="first last simple">
+<li>data structures must be flattened before sending</li>
+<li>rebuilt upon receipt</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Problem: How does the receiver know how the sender has flattened?</p>
+</li>
+<li><p class="first">What if sender and receiver have different representations?</p>
+</li>
+<li><p class="first">=&gt; Follow standard (possibly external) data format - or the one which has been agreed upon between sender and receiver in advance</p>
+</li>
+</ul>
+</div>
+<div class="section" id="marshaling">
+<h2>Marshaling<a class="headerlink" href="#marshaling" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Process of taking a collection of data items and assembling them into a form for transmission</li>
+<li>Unmarshaling - Disassemble message upon receipt</li>
+<li>Normally programs supplied with standards</li>
+<li>For example msg -  5 smith 6 London 1934</li>
+<li>In C, <code class="docutils literal"><span class="pre">sprintf()</span></code> (data item -&gt; array of characters), <code class="docutils literal"><span class="pre">sscanf()</span></code> for opposite:</li>
+</ul>
+<p>The following shows how to marshall some data using <code class="docutils literal"><span class="pre">sprintf()</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre>char *name = “smith”, place = “London”; int year = 1934
+sprintf(message, “%d %s %d %s %d”, strlen(name), name, strlen(place), place, years);
+</pre></div>
+</div>
+<p>Can you think of how to write the unmarshalling version using <code class="docutils literal"><span class="pre">sscanf()</span></code>?</p>
+</div>
+<div class="section" id="case-study-unix-interprocess-communication-ipc">
+<h2>Case Study: UNIX Interprocess Communication (IPC)<a class="headerlink" href="#case-study-unix-interprocess-communication-ipc" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>IP C provided as systems calls implemented over TCP and UDP</li>
+<li>Message destinations - Socket addresses (Internet address and port id)</li>
+<li>Communication operations based on socket pairs (sender and receiver)</li>
+<li>Msgs queued at sender socket until network protocol transmits them and ack</li>
+<li>Before communication can occur - recipient must BIND its socket descriptor to a socket address</li>
+</ul>
+</div>
+<div class="section" id="example-simple-tcp-messaging-framework-from-hpjpc">
+<h2>Example - Simple TCP Messaging Framework (from HPJPC)<a class="headerlink" href="#example-simple-tcp-messaging-framework-from-hpjpc" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>TCP/IP example</li>
+<li>simple messaging service where the client/server exchange Message objects containing key/value
+parameters</li>
+<li>can send all primitive types or binary-encoded data</li>
+<li>Key classes<ul>
+<li>Message</li>
+<li>MessageClient</li>
+<li>MessageServer and MessageServerDispatcher (handles concurrent requests)</li>
+<li>MessageService interface (for building your own services)</li>
+</ul>
+</li>
+<li>Example Service<ul>
+<li>DateService</li>
+<li>DateClient</li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="section" id="message-class">
+<h2>Message class<a class="headerlink" href="#message-class" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="messageclient-class">
+<h2>MessageClient class<a class="headerlink" href="#messageclient-class" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="messageserver-class">
+<h2>MessageServer class<a class="headerlink" href="#messageserver-class" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="messageserverdispatcher-class">
+<h2>MessageServerDispatcher class<a class="headerlink" href="#messageserverdispatcher-class" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="dateservice-using-message-classes-interfaces">
+<h2>DateService using Message Classes/Interfaces<a class="headerlink" href="#dateservice-using-message-classes-interfaces" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="dateclient-using-message-classes-interfaces">
+<h2>DateClient using Message Classes/Interfaces<a class="headerlink" href="#dateclient-using-message-classes-interfaces" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="sockets-communication-using-datagram">
+<h2>Sockets Communication Using Datagram<a class="headerlink" href="#sockets-communication-using-datagram" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>“socket” call to create and a get a descriptor</li>
+<li>Bind call to bind socket to socket address (internet address &amp; port number)</li>
+<li>Send and receive calls use socket descriptor to send receive messages</li>
+<li>UDP, no ack</li>
+</ul>
+<p>FIGURE</p>
+</div>
+<div class="section" id="stream-communication">
+<h2>Stream Communication<a class="headerlink" href="#stream-communication" title="Permalink to this headline">¶</a></h2>
+<p>FIGURE</p>
+<ul class="simple">
+<li>First need to establish a connection between sockets</li>
+<li>Asymmetric because one would be listening for request for connection and the other would be asking</li>
+<li>Once connection, data communication in both directions</li>
+</ul>
+</div>
+<div class="section" id="remote-procedure-call">
+<h2>Remote Procedure Call<a class="headerlink" href="#remote-procedure-call" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><ol class="first upperalpha simple" start="17">
+<li>How do me make “distributed computing look like traditional (centralized) computing”?</li>
+</ol>
+</li>
+<li><dl class="first docutils">
+<dt>Simple idea - Can we use procedure calls? Normally,</dt>
+<dd><ul class="first last simple">
+<li>A calls B &#8211;&gt; A suspended, B executes &#8211;&gt; B returns, A executes</li>
+<li>Information from A (caller) to B (callee) transferred using parameters</li>
+<li>Somewhat easier since both caller and callee execute in the same address space</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>But in Distributed systems - the callee may be on a different system</dt>
+<dd><ul class="first last simple">
+<li>==&gt; Remote Procedure Call (RPC)</li>
+<li>NO EXPLICIT MESSAGE PASSING (which is visible to the programmer)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="remote-procedure-call-rpc">
+<h2>Remote Procedure Call (RPC)<a class="headerlink" href="#remote-procedure-call-rpc" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Although no message passing (at user level) - parameters must still be passed - results must still be returned!</li>
+<li>==&gt; Many issues to be addressed - Look at an example to understand some issues</li>
+</ul>
+<div class="highlight-c"><div class="highlight"><pre><span class="n">count</span> <span class="o">=</span> <span class="n">read</span><span class="p">(</span><span class="n">fd</span><span class="p">,</span> <span class="n">buf</span><span class="p">,</span> <span class="n">nbytes</span><span class="p">)</span>
+<span class="p">[</span><span class="n">fd</span><span class="o">-</span><span class="n">file</span> <span class="n">pointer</span> <span class="p">(</span><span class="kt">int</span><span class="p">),</span> <span class="n">buf</span><span class="o">-</span><span class="n">array</span> <span class="n">of</span> <span class="n">chars</span><span class="p">,</span> <span class="n">nbytes</span><span class="o">-</span><span class="n">integer</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>FIGURE</p>
+</div>
+<div class="section" id="observations">
+<h2>Observations<a class="headerlink" href="#observations" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">parameters (in C): call-by-reference OR call-by-value</p>
+</li>
+<li><p class="first">Value parameter (e.g., fd, nbytes) copied onto stack (original value not affected)</p>
+</li>
+<li><p class="first">Value parameter is just an initialized variable on stack for callee</p>
+</li>
+<li><dl class="first docutils">
+<dt>Reference parameter (array buf) is not copied &#8211;&gt; pointer to it is passed (buf’s address)</dt>
+<dd><ul class="first last simple">
+<li>Original values modified</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Many options are language dependent but we will ignore them…</p>
+</li>
+<li><p class="first">How to deal with these situations?</p>
+</li>
+</ul>
+</div>
+<div class="section" id="rpc">
+<h2>RPC<a class="headerlink" href="#rpc" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Goal: Make RPC look (as much  as possible) like local procedure call, that is,</dt>
+<dd><ul class="first last simple">
+<li>call should not be aware of the fact that the callee is on a different machine (or vice versa)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Look at the read call again and various involved components</dt>
+<dd><ul class="first last simple">
+<li>read routine is extracted from the library by linker and inserted into application object code</li>
+<li>call read &#8212;Parameter onto stack&#8211;&gt; kernel trap &#8211;&gt; operation &#8211;POP&#8211;&gt; return</li>
+<li>programmer does not know all this</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">in RPC &#8212;&gt; read is remote ==&gt; no way to put parameters on stack (no shared space/memory!)</p>
+</li>
+<li><p class="first">Solution: In the library keep “client stub” which acts like “read”</p>
+</li>
+<li><p class="first">So how does it work?</p>
+</li>
+</ul>
+</div>
+<div class="section" id="rpc-mechanisms">
+<h2>RPC Mechanisms<a class="headerlink" href="#rpc-mechanisms" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Client-stub packs parameters</li>
+<li>Ships them to “server-</li>
+</ul>
+</div>
+<div class="section" id="rpc-steps">
+<h2>RPC Steps<a class="headerlink" href="#rpc-steps" title="Permalink to this headline">¶</a></h2>
+<ol class="arabic simple">
+<li>client calls client stub in normal fashion</li>
+<li>client stub builds msg and traps to kernel</li>
+<li>kernel sends msg to remote kernel</li>
+<li>remote kernel gives msg to server stub</li>
+<li>server stub unpacks parameters and calls server</li>
+<li>server processes and returns results to stub</li>
+<li>server stub packs result in msg and traps to kernel</li>
+<li>remote kernel sends msg to client kernel</li>
+<li>client kernel gives msg to client stub</li>
+<li>stub unpacks results and returns to client</li>
+</ol>
+</div>
+<div class="section" id="design-issues">
+<h2>Design Issues<a class="headerlink" href="#design-issues" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Parameter passing</p>
+</li>
+<li><p class="first">Binding</p>
+</li>
+<li><dl class="first docutils">
+<dt>Reliability/How to handle failures</dt>
+<dd><ul class="first last simple">
+<li>messages losses</li>
+<li>client crash</li>
+<li>server crash</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Performance and implementation issues</p>
+</li>
+<li><p class="first">Exception handling</p>
+</li>
+<li><p class="first">Interface definition</p>
+</li>
+</ul>
+</div>
+<div class="section" id="parameter-passing">
+<h2>Parameter Passing<a class="headerlink" href="#parameter-passing" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Some issues similar to messages passing</li>
+<li>Example below- what if clients and servers have different representations (Little endian vs big endian)</li>
+</ul>
+</div>
+<div class="section" id="id4">
+<h2>Parameter Passing<a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>How to solve the problem?</dt>
+<dd><ul class="first last">
+<li><p class="first">client and server know parameter type</p>
+</li>
+<li><dl class="first docutils">
+<dt>msg will have n+1 fields</dt>
+<dd><ul class="first last simple">
+<li>1 - procedure identifier</li>
+<li>n - procedure parameters</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="binding">
+<h2>Binding<a class="headerlink" href="#binding" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><ol class="first upperalpha" start="17">
+<li><dl class="first docutils">
+<dt>How does a client locate the server?</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Hardwire?</dt>
+<dd><ul class="first last simple">
+<li>inflexible</li>
+<li>need to recompile all codes affected for any change</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Dynamic Binding</dt>
+<dd><ul class="first last simple">
+<li>formal specification of server</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="section" id="use-of-specification">
+<h2>Use of Specification<a class="headerlink" href="#use-of-specification" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Input to the stub generator - produces both client and server stub</dt>
+<dd><ul class="first last simple">
+<li>client stub linked to client function</li>
+<li>server stub linked to server function</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Server exports the server interface (initialize())</dt>
+<dd><ul class="first last">
+<li><p class="first">server sends msg to binder to know it is up (registration)</p>
+</li>
+<li><dl class="first docutils">
+<dt>server gives the binder</dt>
+<dd><ul class="first last simple">
+<li>name</li>
+<li>version number</li>
+<li>unique id</li>
+<li>handle (system dependent - IP address, Ethernet address..)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="locating-the-server">
+<h2>Locating the Server<a class="headerlink" href="#locating-the-server" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">First call to RPC of function</p>
+</li>
+<li><p class="first">Client stub sees not bound to server</p>
+</li>
+<li><p class="first">Client stub sends msg to binder to “import” interface</p>
+</li>
+<li><p class="first">If server exists, binder gives unique id and handle to client stub</p>
+</li>
+<li><p class="first">Client stub uses these for communication</p>
+</li>
+<li><dl class="first docutils">
+<dt>Method flexible</dt>
+<dd><ul class="first last simple">
+<li>can handle multiple servers with same interface</li>
+<li>binder can poll servers to see if up or deregister them if down for fault tolerance</li>
+<li>can enforce authentication</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Disadvantage</dt>
+<dd><ul class="first last simple">
+<li>overhead of interface export/import</li>
+<li>binder may be a bottleneck in large systems</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="how-to-handle-failures">
+<h2>How to Handle Failures<a class="headerlink" href="#how-to-handle-failures" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Types of possible failures in RPC systems</dt>
+<dd><ol class="first last arabic simple">
+<li>client unable to locate server</li>
+<li>request message from client to server is lost</li>
+<li>reply message from server to client is lost</li>
+<li>server crashes after receiving a request</li>
+<li>client crashes after sending a request ( ^c!!)</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><ol class="first upperalpha simple" start="17">
+<li>What are the semantics?</li>
+</ol>
+</li>
+<li><ol class="first upperalpha simple" start="17">
+<li>How close can we get to the goal of transparency?</li>
+</ol>
+</li>
+</ul>
+</div>
+<div class="section" id="client-cannot-locate-server">
+<h2>Client Cannot Locate Server<a class="headerlink" href="#client-cannot-locate-server" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Why?</dt>
+<dd><ul class="first last simple">
+<li>server may be down</li>
+<li>new version of server (using new stubs..) but older client ==&gt; binder cannot match</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Solutions</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>respond with error type “cannot locate server”</dt>
+<dd><ul class="first last simple">
+<li><ul class="first">
+<li>simple</li>
+</ul>
+</li>
+<li>not general (what if the error code, e.g. -1, is also a result of computation?)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>raise exception</dt>
+<dd><ul class="first last simple">
+<li>some languages allow calling special procedures for error</li>
+<li>not all languages support this</li>
+<li>destroys transparency</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="lost-request-message">
+<h2>Lost Request Message<a class="headerlink" href="#lost-request-message" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Time Out</dt>
+<dd><ul class="first last simple">
+<li>Kernel starts timer when request sent</li>
+<li>If timer expires, resend message</li>
+<li>If message was lost - server cannot tell the difference</li>
+<li>If message lost too many times ==&gt; “cannot locate server”</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="lost-reply-message">
+<h2>Lost Reply Message<a class="headerlink" href="#lost-reply-message" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">More difficult to handle</p>
+</li>
+<li><p class="first">Rely on timer again?</p>
+</li>
+<li><p class="first">Problem: Client’s kernel doesn&#8217;t know why no answer!</p>
+</li>
+<li><dl class="first docutils">
+<dt>Must distinguish between</dt>
+<dd><ul class="first last simple">
+<li>request/reply got lost?</li>
+<li>server slow</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Why?</dt>
+<dd><ul class="first last simple">
+<li>some operations may be repeated without problems (e.g., reading a block from the same position in file&#8211;no side effects)</li>
+<li>property - “idempotent”</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="id5">
+<h2>Lost Reply Message<a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>What if request is not idempotent?</dt>
+<dd><ul class="first last simple">
+<li>e.g., transferring 500 thousand dollars from your account</li>
+<li>do it five times and you are broke!</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Solution - Client kernel uses a sequence number (needs to maintain state) for each request</p>
+</li>
+<li><p class="first">Have a bit in message to distinguish initial vs. retransmissions</p>
+</li>
+</ul>
+</div>
+<div class="section" id="server-crashes">
+<h2>Server Crashes<a class="headerlink" href="#server-crashes" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Depends on when server crashes</dt>
+<dd><ul class="first last simple">
+<li>After execution</li>
+<li>After receiving message but BEFORE execution</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Solutions differ</p>
+</li>
+</ul>
+<p>FIGURE</p>
+</div>
+<div class="section" id="id6">
+<h2>Server Crashes<a class="headerlink" href="#id6" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">But the client cannot tell the difference!</p>
+</li>
+<li><dl class="first docutils">
+<dt>Solutions?</dt>
+<dd><ul class="first last">
+<li><dl class="first docutils">
+<dt>Wait until server reboots (or rebind)</dt>
+<dd><ul class="first last simple">
+<li>try operation again and keep trying until success</li>
+<li>“at least once semantics”</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Give up immediately and report failure</dt>
+<dd><ul class="first last simple">
+<li>“at most once semantics”</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Guarantee nothing</dt>
+<dd><ul class="first last simple">
+<li>(-) RPC may be tried from 0 - any no</li>
+<li>(+) easy to implement</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">But none of the above attractive</p>
+</li>
+<li><dl class="first docutils">
+<dt>What we want is “exactly once semantics”</dt>
+<dd><ul class="first last simple">
+<li>no way to insure this</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="client-crashes">
+<h2>Client Crashes<a class="headerlink" href="#client-crashes" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Client sends a request and crashes</dt>
+<dd><ul class="first last simple">
+<li>computation active - but no parent active</li>
+<li>unwanted computation called “orphan”</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Orphan’s can create problems</dt>
+<dd><ul class="first last simple">
+<li>wasted resources</li>
+<li>locked files?</li>
+<li>client reboots - does RPC - reply from orphan comes =&gt;confusion!</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Solutions (Extermination)</dt>
+<dd><ul class="first last simple">
+<li>client stub logs (on disk)  request before sending</li>
+<li>after reboot check log - kill any orphan</li>
+<li>(+) simple</li>
+<li>(-) too expensive (each RPC requires disk access!)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">what if orphans do RPC =&gt; grand orphans =&gt; difficult to kill all</p>
+</li>
+</ul>
+</div>
+<div class="section" id="id7">
+<h2>Client Crashes<a class="headerlink" href="#id7" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Reincarnation</dt>
+<dd><ul class="first last simple">
+<li>divide time into numbered slots (epoch)</li>
+<li>when client reboots, it broadcasts to all machines with new slot</li>
+<li>all remote computations killed</li>
+<li>if network partitioned, some orphans will remain - but will be detected later</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Gentle Reincarnation</dt>
+<dd><ul class="first last simple">
+<li>locate the owner of the orphan first</li>
+<li>if not found, kill computations</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="acknowledgments">
+<h2>Acknowledgments<a class="headerlink" href="#acknowledgments" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>How to acknowledge when RPC packets are broken up?</li>
+</ul>
+<p>FIGURE</p>
+</div>
+<div class="section" id="flow-control">
+<h2>Flow Control<a class="headerlink" href="#flow-control" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Network Interface Chips (NICs) can send message fast</p>
+</li>
+<li><p class="first">But receiving more difficult due to finite buffer</p>
+</li>
+<li><dl class="first docutils">
+<dt>Overrun can occur when</dt>
+<dd><ul class="first last simple">
+<li>NIC serving one packet</li>
+<li>another arrives</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">No overrun possible in stop-and-wait (assuming single sender)</p>
+</li>
+<li><dl class="first docutils">
+<dt>Sender can insert gaps (assume n buffer capacity)</dt>
+<dd><ul class="first last simple">
+<li>send n packets</li>
+<li>gap</li>
+<li>send n packets</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">Performance</p>
+</li>
+<li><p class="first">Critical Path</p>
+</li>
+</ul>
+</div>
+<div class="section" id="performance">
+<h2>Performance<a class="headerlink" href="#performance" title="Permalink to this headline">¶</a></h2>
+<p>FIGURE(s) that need updating.</p>
+<p>Where is the time spent? Example firefly workstation</p>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, George K. Thiruvathukal and Joe Kaylor.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Legacy Lectures &mdash; Distributed Systems alpha documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.2.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Distributed Systems alpha documentation" href="index.html" />
+    <link rel="prev" title="NoSQL and Sharding" href="nosql.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+  
+
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          COMP 339-439</a>
+        <span class="navbar-text navbar-version pull-left"><b>v0.5</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="genindex.html">Index</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Introduction and Issues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#what-is-a-distributed-system">What is a distributed system?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#illustration">Illustration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#advantages-of-distributed-systems-vs-centralized">Advantages of Distributed Systems vs. Centralized</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#advantages-of-distributed-systems-vs-standalones">Advantages of Distributed Systems vs. Standalones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#disadvantages-of-distributed-systems">Disadvantages of Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#key-characteristics">Key Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#resource-sharing">Resource Sharing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#resources-must-be-managed">Resources Must be Managed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#openness">Openness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#open-distributed-systems">Open Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#concurrency">Concurrency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#scalability">Scalability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#fault-tolerance">Fault Tolerance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#transparency">Transparency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#design-issues">Design Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#issues-arising-from-distributed-systems">Issues arising from Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#naming">Naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#naming-name-resolution">Naming - Name Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#naming-design-considerations">Naming - Design Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#communication">Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#types-of-communication">Types of Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#client-server-communication">Client-Server Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#id1">Client-Server Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#group-multicast">Group Multicast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#software-structure">Software Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#distributed-system-software-structure">Distributed System Software Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#consistency-management">Consistency Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#caching">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#consistency">Consistency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#workload-allocation">Workload Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#processor-pool-model">Processor Pool Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#quality-of-service">Quality-of-Service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="networking.html">Networking Primer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#networks">Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#many-types-of-networks">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id1">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id2">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#internetworks">Internetworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#performance-issues">Performance Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#example-a-typical-campus-network">Example- A Typical Campus Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#network-topologies">Network Topologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id3">Network Topologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#a-network-is-not-an-island">A Network is not an Island</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#design-issues-in-layers">Design Issues In Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#protocols-are-divided-into-layers">Protocols are divided into layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#physical-layer">Physical Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#data-link-layer">Data Link Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#the-network-layer">The Network Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#the-transport-layer">The Transport Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#the-session-presentation-layers">The Session &amp; Presentation Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#application-layer">Application Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#interprocess-communication">Interprocess Communication:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#reliability">Reliability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#mapping-data-to-messages">Mapping Data to Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#marshaling">Marshaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#case-study-unix-interprocess-communication-ipc">Case Study: UNIX Interprocess Communication (IPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#example-simple-tcp-messaging-framework-from-hpjpc">Example - Simple TCP Messaging Framework (from HPJPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#message-class">Message class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#messageclient-class">MessageClient class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#messageserver-class">MessageServer class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#messageserverdispatcher-class">MessageServerDispatcher class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#dateservice-using-message-classes-interfaces">DateService using Message Classes/Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#dateclient-using-message-classes-interfaces">DateClient using Message Classes/Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#sockets-communication-using-datagram">Sockets Communication Using Datagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#stream-communication">Stream Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#remote-procedure-call">Remote Procedure Call</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#remote-procedure-call-rpc">Remote Procedure Call (RPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#observations">Observations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#rpc">RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#rpc-mechanisms">RPC Mechanisms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#rpc-steps">RPC Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#design-issues">Design Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#parameter-passing">Parameter Passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id4">Parameter Passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#binding">Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#use-of-specification">Use of Specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#locating-the-server">Locating the Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#how-to-handle-failures">How to Handle Failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#client-cannot-locate-server">Client Cannot Locate Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#lost-request-message">Lost Request Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#lost-reply-message">Lost Reply Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id5">Lost Reply Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#server-crashes">Server Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id6">Server Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#client-crashes">Client Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id7">Client Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#acknowledgments">Acknowledgments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#flow-control">Flow Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#performance">Performance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">Concurrency and Threads</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#threads-vs-processes">Threads vs Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#what-are-processes-threads">What are Processes, Threads?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#common-threading-use-cases">Common Threading Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#mutual-exclusion">Mutual Exclusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#tools-for-achieving-mutual-exclusion">Tools for Achieving Mutual Exclusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#mutex-example-java">Mutex Example/Java</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#semaphore-example">Semaphore Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#barrier">Barrier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#deadlock-a-classic-problem">Deadlock - a classic problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#fork">Fork</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#diner0">Diner0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#diners0">Diners0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#diners1-eliminating-deadlock-with-resource-enumeration">Diners1 - eliminating deadlock with resource enumeration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#execution-with-deadlock">Execution - With Deadlock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#deadlock-free-version">Deadlock-Free Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#common-data-structures-in-concurrent-programming">Common Data Structures in Concurrent Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#design-considerations">Design Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#kernel-threads-vs-user-mode-threads">Kernel Threads vs User Mode Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#concurrent-file-copy-example">Concurrent File Copy Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#sequential-file-copy">Sequential File Copy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#concurrent-file-copy-organization">Concurrent File Copy Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html">Distributed Systems and Storage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#types-of-non-local-storage">Types of Non-Local Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#how-do-we-evaluate-storage-systems">How Do We Evaluate Storage Systems?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#storage-devices">Storage Devices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#storage-and-failure">Storage and Failure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#maximizing-availability-raid">Maximizing Availability - RAID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid">RAID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid-0">RAID - 0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid-1">RAID - 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid-5">RAID - 5</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#local-storage">Local Storage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#implementing-files-and-folders">Implementing Files and Folders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#inodes">Inodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#inodes-indirect-blocks">Inodes - Indirect Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#block-caches">Block Caches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#folders-and-path-traversal">Folders and Path Traversal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#virtual-filesystems-vfs">Virtual Filesystems / VFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#id1">Virtual Filesystems / VFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#virtual-filesystems-and-stacking">Virtual Filesystems and Stacking</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#distributed-filesystems">Distributed Filesystems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#file-service-model">File Service Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#directory-service">Directory Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#naming-transparency">Naming Transparency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#file-sharing-semantics">File Sharing Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#unix-semantics">UNIX Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#more-semantics">More Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#distributed-file-system-implementation">Distributed File System Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#system-structure">System Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#id2">Directory Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#stateless-versus-stateful">Stateless versus Stateful</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#caching">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#caching-server">Caching - Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#caching-client">Caching - Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#client-cache-consistency">Client - Cache Consistency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#client-cache-consistency-other-options">Client - Cache Consistency - Other Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication">Replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication-update-protocols">Replication - Update Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication-voting-algorithm">Replication - Voting Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication-general-quorum-algorithm">Replication - General Quorum Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#case-study-sun-nfs">Case Study - SUN NFS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#sun-nfs-implementation">SUN NFS - Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="directories.html">Directories and LDAP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#what-is-a-directory">What is a Directory?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#what-is-not-a-directory">What is NOT a Directory?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#types">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#characteristics-of-directories">Characteristics of Directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#evolution-of-directories">Evolution of Directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#so-what-is-ldap-exactly">So what is LDAP, exactly?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#early-ldap-implementations">Early LDAP Implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#slapd-stand-alone-ldap-daemon">SLAPD: Stand-alone LDAP Daemon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#slapd-continued">SLAPD: Continued</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#ldap-client-server-exchange-protocol">LDAP Client-Server Exchange Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#example-ldap-usage">Example LDAP Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#schemas">Schemas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#attributes-and-objectclasses">attributes and objectclasses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#ldap-tree-topology">LDAP Tree Topology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#network-architecture">Network Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#distributed-ldap-server-model">Distributed LDAP Server Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#ldif-example">LDIF Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#acknowledgements">Acknowledgements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ci.html">Continuous Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#what-does-continuous-integration-do">What Does Continuous Integration Do?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#how-often-is-continuous-integration-run">How Often is Continuous Integration Run?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#what-are-the-bits-and-pieces-of-continuous-integration">What are the Bits and Pieces of Continuous Integration?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#continuous-integration-products-vendors">Continuous Integration Products / Vendors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#continuous-integration-and-the-key-characteristics-of-distributed-systems">Continuous Integration and the Key Characteristics of Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#case-study-my-simple-ci-system">Case Study - My Simple CI System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#the-front-page-of-team-city">The Front Page of Team City</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#build-nodes">Build Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="maven.html">Project Build Management With Maven</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#creating-a-maven-project-from-scratch">Creating a Maven Project from Scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#generating-an-eclipse-project-from-a-maven-project">Generating an Eclipse Project from a Maven Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#configuring-eclipse">Configuring Eclipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#running-unit-tests-with-maven">Running Unit tests with Maven</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">Writing with Sphinx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#about-sphinx">About Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#additional-resources">Additional Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#setting-up-sphinx-ubuntu-linux">Setting up Sphinx - Ubuntu Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#sphinx-on-non-linux-platforms">Sphinx on non-Linux Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#setting-up-sphinx-mac-osx-using-homebrew-instead-of-macports">Setting up Sphinx - Mac OSX (Using HomeBrew instead of MacPorts)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#setting-up-sphinx-windows">Setting up Sphinx - Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#setting-up-sphinx-in-a-python-virtualenv">Setting up Sphinx in a Python virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#authoring-in-sphinx">Authoring in Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clocks.html">Clocks and Synchronization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#what-is-time-some-physics">What is Time? Some Physics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#time-and-computation">Time and Computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#physical-clocks">Physical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#physical-clocks-multiple-systems">Physical Clocks - Multiple Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#clock-synchronization">Clock Synchronization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#clocks-synchronization-and-reliability">Clocks Synchronization and Reliability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#lamports-logical-clocks">Lamport’s Logical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#implementing-lamports-logical-clocks">Implementing Lamport’s Logical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#limitations-of-lamports-logical-clocks">Limitations of Lamport’s Logical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#vector-clocks">Vector Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#implementing-vector-clocks">Implementing Vector Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#so-what-did-we-get-out-of-all-of-this">So... What Did We Get Out of All of This?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dns.html">Domain Name Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpi.html">Message Passing Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corba.html">Object Brokers and CORBA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest.html">REST and Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nosql.html">NoSQL and Sharding</a></li>
+</ul>
+<ul class="current">
+<li class="toctree-l1 current"><a class="current reference internal" href="">Legacy Lectures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#software">Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#networking-overview">Networking Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#threads-and-processes">Threads and Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#filesystems">Filesystems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#filesystems-research-at-luc">Filesystems Research at LUC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#grids-and-clouds">Grids and Clouds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#message-passing-messaging-middleware">Message Passing / Messaging Middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#distributed-object-programming">Distributed Object Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#modern-distributed-databases">Modern Distributed Databases</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Legacy Lectures</a><ul>
+<li><a class="reference internal" href="#software">Software</a></li>
+<li><a class="reference internal" href="#introduction">Introduction</a></li>
+<li><a class="reference internal" href="#networking-overview">Networking Overview</a></li>
+<li><a class="reference internal" href="#threads-and-processes">Threads and Processes</a></li>
+<li><a class="reference internal" href="#filesystems">Filesystems</a></li>
+<li><a class="reference internal" href="#filesystems-research-at-luc">Filesystems Research at LUC</a></li>
+<li><a class="reference internal" href="#grids-and-clouds">Grids and Clouds</a></li>
+<li><a class="reference internal" href="#message-passing-messaging-middleware">Message Passing / Messaging Middleware</a></li>
+<li><a class="reference internal" href="#distributed-object-programming">Distributed Object Programming</a></li>
+<li><a class="reference internal" href="#modern-distributed-databases">Modern Distributed Databases</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="nosql.html" title="Previous Chapter: NoSQL and Sharding">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/lectures.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="legacy-lectures">
+<h1>Legacy Lectures<a class="headerlink" href="#legacy-lectures" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="software">
+<h2>Software<a class="headerlink" href="#software" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Languages</li>
+<li>Distributed Version Control Tools</li>
+</ul>
+</div>
+<div class="section" id="introduction">
+<h2>Introduction<a class="headerlink" href="#introduction" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Issues in Distributed Systems</li>
+</ul>
+</div>
+<div class="section" id="networking-overview">
+<h2>Networking Overview<a class="headerlink" href="#networking-overview" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Networking Primer and Protocols</li>
+<li>Sockets Programming Examples from HPJPC</li>
+</ul>
+</div>
+<div class="section" id="threads-and-processes">
+<h2>Threads and Processes<a class="headerlink" href="#threads-and-processes" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Threads Primer</li>
+<li>Examples from HPJPC</li>
+</ul>
+</div>
+<div class="section" id="filesystems">
+<h2>Filesystems<a class="headerlink" href="#filesystems" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Distributed Filesystems (NFS, AFS, etc.)</li>
+<li>Userland Filesystems</li>
+</ul>
+</div>
+<div class="section" id="filesystems-research-at-luc">
+<h2>Filesystems Research at LUC<a class="headerlink" href="#filesystems-research-at-luc" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>NOFS and RESTFS</li>
+</ul>
+</div>
+<div class="section" id="grids-and-clouds">
+<h2>Grids and Clouds<a class="headerlink" href="#grids-and-clouds" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="message-passing-messaging-middleware">
+<h2>Message Passing / Messaging Middleware<a class="headerlink" href="#message-passing-messaging-middleware" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>MPI</li>
+<li>0mq</li>
+</ul>
+</div>
+<div class="section" id="distributed-object-programming">
+<h2>Distributed Object Programming<a class="headerlink" href="#distributed-object-programming" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>CORBA Tutorial</li>
+</ul>
+</div>
+<div class="section" id="modern-distributed-databases">
+<h2>Modern Distributed Databases<a class="headerlink" href="#modern-distributed-databases" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>MongoDB</li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, George K. Thiruvathukal and Joe Kaylor.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Concurrency and Threads &mdash; Distributed Systems alpha documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.2.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Distributed Systems alpha documentation" href="index.html" />
+    <link rel="next" title="Distributed Systems and Storage" href="storage.html" />
+    <link rel="prev" title="Networking Primer" href="networking.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+  
+
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          COMP 339-439</a>
+        <span class="navbar-text navbar-version pull-left"><b>v0.5</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="genindex.html">Index</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Introduction and Issues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#what-is-a-distributed-system">What is a distributed system?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#illustration">Illustration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#advantages-of-distributed-systems-vs-centralized">Advantages of Distributed Systems vs. Centralized</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#advantages-of-distributed-systems-vs-standalones">Advantages of Distributed Systems vs. Standalones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#disadvantages-of-distributed-systems">Disadvantages of Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#key-characteristics">Key Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#resource-sharing">Resource Sharing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#resources-must-be-managed">Resources Must be Managed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#openness">Openness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#open-distributed-systems">Open Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#concurrency">Concurrency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#scalability">Scalability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#fault-tolerance">Fault Tolerance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#transparency">Transparency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#design-issues">Design Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#issues-arising-from-distributed-systems">Issues arising from Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#naming">Naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#naming-name-resolution">Naming - Name Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#naming-design-considerations">Naming - Design Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#communication">Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#types-of-communication">Types of Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#client-server-communication">Client-Server Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#id1">Client-Server Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#group-multicast">Group Multicast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#software-structure">Software Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#distributed-system-software-structure">Distributed System Software Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#consistency-management">Consistency Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#caching">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#consistency">Consistency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#workload-allocation">Workload Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#processor-pool-model">Processor Pool Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#quality-of-service">Quality-of-Service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="networking.html">Networking Primer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#networks">Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#many-types-of-networks">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id1">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id2">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#internetworks">Internetworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#performance-issues">Performance Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#example-a-typical-campus-network">Example- A Typical Campus Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#network-topologies">Network Topologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id3">Network Topologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#a-network-is-not-an-island">A Network is not an Island</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#design-issues-in-layers">Design Issues In Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#protocols-are-divided-into-layers">Protocols are divided into layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#physical-layer">Physical Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#data-link-layer">Data Link Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#the-network-layer">The Network Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#the-transport-layer">The Transport Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#the-session-presentation-layers">The Session &amp; Presentation Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#application-layer">Application Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#interprocess-communication">Interprocess Communication:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#reliability">Reliability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#mapping-data-to-messages">Mapping Data to Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#marshaling">Marshaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#case-study-unix-interprocess-communication-ipc">Case Study: UNIX Interprocess Communication (IPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#example-simple-tcp-messaging-framework-from-hpjpc">Example - Simple TCP Messaging Framework (from HPJPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#message-class">Message class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#messageclient-class">MessageClient class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#messageserver-class">MessageServer class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#messageserverdispatcher-class">MessageServerDispatcher class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#dateservice-using-message-classes-interfaces">DateService using Message Classes/Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#dateclient-using-message-classes-interfaces">DateClient using Message Classes/Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#sockets-communication-using-datagram">Sockets Communication Using Datagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#stream-communication">Stream Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#remote-procedure-call">Remote Procedure Call</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#remote-procedure-call-rpc">Remote Procedure Call (RPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#observations">Observations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#rpc">RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#rpc-mechanisms">RPC Mechanisms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#rpc-steps">RPC Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#design-issues">Design Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#parameter-passing">Parameter Passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id4">Parameter Passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#binding">Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#use-of-specification">Use of Specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#locating-the-server">Locating the Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#how-to-handle-failures">How to Handle Failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#client-cannot-locate-server">Client Cannot Locate Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#lost-request-message">Lost Request Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#lost-reply-message">Lost Reply Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id5">Lost Reply Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#server-crashes">Server Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id6">Server Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#client-crashes">Client Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id7">Client Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#acknowledgments">Acknowledgments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#flow-control">Flow Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#performance">Performance</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Concurrency and Threads</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#threads-vs-processes">Threads vs Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#what-are-processes-threads">What are Processes, Threads?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-threading-use-cases">Common Threading Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mutual-exclusion">Mutual Exclusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#tools-for-achieving-mutual-exclusion">Tools for Achieving Mutual Exclusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#mutex-example-java">Mutex Example/Java</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#semaphore-example">Semaphore Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#barrier">Barrier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deadlock-a-classic-problem">Deadlock - a classic problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#fork">Fork</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#diner0">Diner0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#diners0">Diners0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#diners1-eliminating-deadlock-with-resource-enumeration">Diners1 - eliminating deadlock with resource enumeration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#execution-with-deadlock">Execution - With Deadlock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#deadlock-free-version">Deadlock-Free Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#common-data-structures-in-concurrent-programming">Common Data Structures in Concurrent Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#design-considerations">Design Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#kernel-threads-vs-user-mode-threads">Kernel Threads vs User Mode Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#concurrent-file-copy-example">Concurrent File Copy Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#sequential-file-copy">Sequential File Copy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#concurrent-file-copy-organization">Concurrent File Copy Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html">Distributed Systems and Storage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#types-of-non-local-storage">Types of Non-Local Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#how-do-we-evaluate-storage-systems">How Do We Evaluate Storage Systems?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#storage-devices">Storage Devices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#storage-and-failure">Storage and Failure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#maximizing-availability-raid">Maximizing Availability - RAID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid">RAID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid-0">RAID - 0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid-1">RAID - 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid-5">RAID - 5</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#local-storage">Local Storage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#implementing-files-and-folders">Implementing Files and Folders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#inodes">Inodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#inodes-indirect-blocks">Inodes - Indirect Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#block-caches">Block Caches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#folders-and-path-traversal">Folders and Path Traversal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#virtual-filesystems-vfs">Virtual Filesystems / VFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#id1">Virtual Filesystems / VFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#virtual-filesystems-and-stacking">Virtual Filesystems and Stacking</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#distributed-filesystems">Distributed Filesystems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#file-service-model">File Service Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#directory-service">Directory Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#naming-transparency">Naming Transparency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#file-sharing-semantics">File Sharing Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#unix-semantics">UNIX Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#more-semantics">More Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#distributed-file-system-implementation">Distributed File System Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#system-structure">System Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#id2">Directory Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#stateless-versus-stateful">Stateless versus Stateful</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#caching">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#caching-server">Caching - Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#caching-client">Caching - Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#client-cache-consistency">Client - Cache Consistency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#client-cache-consistency-other-options">Client - Cache Consistency - Other Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication">Replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication-update-protocols">Replication - Update Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication-voting-algorithm">Replication - Voting Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication-general-quorum-algorithm">Replication - General Quorum Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#case-study-sun-nfs">Case Study - SUN NFS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#sun-nfs-implementation">SUN NFS - Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="directories.html">Directories and LDAP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#what-is-a-directory">What is a Directory?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#what-is-not-a-directory">What is NOT a Directory?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#types">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#characteristics-of-directories">Characteristics of Directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#evolution-of-directories">Evolution of Directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#so-what-is-ldap-exactly">So what is LDAP, exactly?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#early-ldap-implementations">Early LDAP Implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#slapd-stand-alone-ldap-daemon">SLAPD: Stand-alone LDAP Daemon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#slapd-continued">SLAPD: Continued</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#ldap-client-server-exchange-protocol">LDAP Client-Server Exchange Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#example-ldap-usage">Example LDAP Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#schemas">Schemas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#attributes-and-objectclasses">attributes and objectclasses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#ldap-tree-topology">LDAP Tree Topology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#network-architecture">Network Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#distributed-ldap-server-model">Distributed LDAP Server Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#ldif-example">LDIF Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#acknowledgements">Acknowledgements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ci.html">Continuous Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#what-does-continuous-integration-do">What Does Continuous Integration Do?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#how-often-is-continuous-integration-run">How Often is Continuous Integration Run?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#what-are-the-bits-and-pieces-of-continuous-integration">What are the Bits and Pieces of Continuous Integration?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#continuous-integration-products-vendors">Continuous Integration Products / Vendors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#continuous-integration-and-the-key-characteristics-of-distributed-systems">Continuous Integration and the Key Characteristics of Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#case-study-my-simple-ci-system">Case Study - My Simple CI System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#the-front-page-of-team-city">The Front Page of Team City</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#build-nodes">Build Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="maven.html">Project Build Management With Maven</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#creating-a-maven-project-from-scratch">Creating a Maven Project from Scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#generating-an-eclipse-project-from-a-maven-project">Generating an Eclipse Project from a Maven Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#configuring-eclipse">Configuring Eclipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#running-unit-tests-with-maven">Running Unit tests with Maven</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">Writing with Sphinx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#about-sphinx">About Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#additional-resources">Additional Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#setting-up-sphinx-ubuntu-linux">Setting up Sphinx - Ubuntu Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#sphinx-on-non-linux-platforms">Sphinx on non-Linux Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#setting-up-sphinx-mac-osx-using-homebrew-instead-of-macports">Setting up Sphinx - Mac OSX (Using HomeBrew instead of MacPorts)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#setting-up-sphinx-windows">Setting up Sphinx - Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#setting-up-sphinx-in-a-python-virtualenv">Setting up Sphinx in a Python virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#authoring-in-sphinx">Authoring in Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="clocks.html">Clocks and Synchronization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#what-is-time-some-physics">What is Time? Some Physics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#time-and-computation">Time and Computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#physical-clocks">Physical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#physical-clocks-multiple-systems">Physical Clocks - Multiple Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#clock-synchronization">Clock Synchronization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#clocks-synchronization-and-reliability">Clocks Synchronization and Reliability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#lamports-logical-clocks">Lamport’s Logical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#implementing-lamports-logical-clocks">Implementing Lamport’s Logical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#limitations-of-lamports-logical-clocks">Limitations of Lamport’s Logical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#vector-clocks">Vector Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#implementing-vector-clocks">Implementing Vector Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="clocks.html#so-what-did-we-get-out-of-all-of-this">So... What Did We Get Out of All of This?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dns.html">Domain Name Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpi.html">Message Passing Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corba.html">Object Brokers and CORBA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest.html">REST and Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nosql.html">NoSQL and Sharding</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lectures.html">Legacy Lectures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#software">Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#networking-overview">Networking Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#threads-and-processes">Threads and Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#filesystems">Filesystems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#filesystems-research-at-luc">Filesystems Research at LUC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#grids-and-clouds">Grids and Clouds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#message-passing-messaging-middleware">Message Passing / Messaging Middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#distributed-object-programming">Distributed Object Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#modern-distributed-databases">Modern Distributed Databases</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Concurrency and Threads</a><ul>
+<li><a class="reference internal" href="#threads-vs-processes">Threads vs Processes</a></li>
+<li><a class="reference internal" href="#what-are-processes-threads">What are Processes, Threads?</a></li>
+<li><a class="reference internal" href="#common-threading-use-cases">Common Threading Use Cases</a></li>
+<li><a class="reference internal" href="#mutual-exclusion">Mutual Exclusion</a></li>
+<li><a class="reference internal" href="#tools-for-achieving-mutual-exclusion">Tools for Achieving Mutual Exclusion</a></li>
+<li><a class="reference internal" href="#mutex-example-java">Mutex Example/Java</a></li>
+<li><a class="reference internal" href="#semaphore-example">Semaphore Example</a></li>
+<li><a class="reference internal" href="#barrier">Barrier</a></li>
+<li><a class="reference internal" href="#deadlock-a-classic-problem">Deadlock - a classic problem</a></li>
+<li><a class="reference internal" href="#fork">Fork</a></li>
+<li><a class="reference internal" href="#diner0">Diner0</a></li>
+<li><a class="reference internal" href="#diners0">Diners0</a></li>
+<li><a class="reference internal" href="#diners1-eliminating-deadlock-with-resource-enumeration">Diners1 - eliminating deadlock with resource enumeration</a></li>
+<li><a class="reference internal" href="#execution-with-deadlock">Execution - With Deadlock</a></li>
+<li><a class="reference internal" href="#deadlock-free-version">Deadlock-Free Version</a></li>
+<li><a class="reference internal" href="#common-data-structures-in-concurrent-programming">Common Data Structures in Concurrent Programming</a></li>
+<li><a class="reference internal" href="#design-considerations">Design Considerations</a></li>
+<li><a class="reference internal" href="#kernel-threads-vs-user-mode-threads">Kernel Threads vs User Mode Threads</a></li>
+<li><a class="reference internal" href="#concurrent-file-copy-example">Concurrent File Copy Example</a></li>
+<li><a class="reference internal" href="#sequential-file-copy">Sequential File Copy</a></li>
+<li><a class="reference internal" href="#concurrent-file-copy-organization">Concurrent File Copy Organization</a></li>
+<li><a class="reference internal" href="#execution">Execution</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="networking.html" title="Previous Chapter: Networking Primer">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+  </li>
+  <li>
+    <a href="storage.html" title="Next Chapter: Distributed Systems and Storage">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/concurrency.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="concurrency-and-threads">
+<h1>Concurrency and Threads<a class="headerlink" href="#concurrency-and-threads" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="threads-vs-processes">
+<h2>Threads vs Processes<a class="headerlink" href="#threads-vs-processes" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Traditional Operating Systems have Processes</dt>
+<dd><ul class="first last simple">
+<li>Each process has its own address space</li>
+<li>Single thread of control</li>
+<li>When a process makes a system call, the process blocks until the call completes.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>In many situations it is desirable to have multiple threads of control for:</dt>
+<dd><ul class="first last">
+<li><p class="first">Explicit parallelism - to take advantage of multiple processors</p>
+</li>
+<li><dl class="first docutils">
+<dt>To allow computation to continue while waiting for system calls to return</dt>
+<dd><ul class="first last simple">
+<li>example: one thread reads a file into a buffer, another thread compresses the buffer, and a final thread writes out a compressed file.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">To reduce the cost of context switching</p>
+</li>
+<li><p class="first">Implicit parallelism - to keep a single processor busy</p>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="what-are-processes-threads">
+<h2>What are Processes, Threads?<a class="headerlink" href="#what-are-processes-threads" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Processes have:</dt>
+<dd><ul class="first simple">
+<li>Program counter</li>
+<li>Stack</li>
+<li>Register set</li>
+<li>An exclusive virtual address space</li>
+<li>Sandboxing from other process except to the extent that the process participates in IPC</li>
+</ul>
+<div class="last figure align-center">
+<img alt="Process Memory Layout" src="_images/memory_layout.png" />
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Threads:</dt>
+<dd><ul class="first simple">
+<li>Threads can be thought of (and are often referred to as) lightweight processes</li>
+<li>Provide multiple threads of control</li>
+<li>Have multiple program counters</li>
+<li>Have multiple stacks</li>
+<li>One parent process, the virtual address space is shared across processes</li>
+<li>Each thread runs sequentially</li>
+<li>In a given process with N threads, 0-i threads may be blocked, and 0-k threads are runnable or running.</li>
+</ul>
+<div class="last figure align-center">
+<img alt="Threaded Memory Layout" src="_images/memory_layout_multithreaded.png" />
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="common-threading-use-cases">
+<h2>Common Threading Use Cases<a class="headerlink" href="#common-threading-use-cases" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Client / Server - ex: file servers:</dt>
+<dd><ul class="first simple">
+<li>One thread listens on a network socket for clients</li>
+<li>When a client connects, a new thread is spawned to handle the request. This permits several clients to connect to the file server at one time because each request is handled by a separate thread of execution.</li>
+<li>To send the file data, two threads can be used the first can read from the file on disk and the second can write the read buffers to the socket.</li>
+</ul>
+<div class="last figure align-center">
+<img alt="Client-Server Thread Model" src="_images/client_server.png" />
+</div>
+</dd>
+</dl>
+</li>
+<li><p class="first">Example Client-Server - a TCP echo server</p>
+</li>
+</ul>
+<ul>
+<li><dl class="first docutils">
+<dt>Parallel computation:</dt>
+<dd><ul class="first simple">
+<li>An algorithm is designed to solve some small part or subproblem of a larger problem</li>
+<li>To the extent that the subproblems are not inter-dependent, they can be executed in parallel</li>
+<li>Multiple threads can work against a common task queue.</li>
+</ul>
+<div class="last figure align-center">
+<img alt="Parallel Thread Model" src="_images/parallel_threads.png" />
+</div>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="admonition warning">
+<p class="first admonition-title">Warning</p>
+<p class="last">The focus of this course is on <em>distributed</em> (not <em>parallel</em>) systems. Nevertheless, you may find that you want to take advantage of parallel computing in your work. We encourage you to read Christopher and Thiruvathukal, <a class="reference external" href="http://hpjpc.googlecode.com">http://hpjpc.googlecode.com</a>, which contains many examples of parallel algorithms in Java. You may also find Läufer, Lewis, and Thiruvathukal&#8217;s Scala workshop tutorial helpful. See <a class="reference external" href="http://scalaworkshop.cs.luc.edu">http://scalaworkshop.cs.luc.edu</a>.</p>
+</div>
+<ul class="simple">
+<li>Example Parallel Computation - factoring an integer</li>
+</ul>
+<ul>
+<li><dl class="first docutils">
+<dt>Pipeline processing:</dt>
+<dd><ul class="first simple">
+<li>An algorithm must be executed in several stages that depend upon each other.</li>
+<li>For example if there are three stages, then three threads can be launched for each of the stages. As the first thread completes some part of the total work, it can pass it to a queue for the second stage to be processed by the second thread. At this time, the first thread and second thread can work on their own stages in parallel. The same continues to the third thread for the third stage of computation.</li>
+</ul>
+<div class="last figure align-center">
+<img alt="Pipeline Thread Model" src="_images/pipeline_threads.png" />
+</div>
+</dd>
+</dl>
+</li>
+<li><p class="first">Example Pipeline Processing - file compression</p>
+</li>
+</ul>
+<ul class="simple">
+<li>Example Pipeline Processing - a more concise and language friendly file compression</li>
+</ul>
+<ul class="simple">
+<li>Helper class - ThreadedList</li>
+</ul>
+</div>
+<div class="section" id="mutual-exclusion">
+<h2>Mutual Exclusion<a class="headerlink" href="#mutual-exclusion" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Mutual exclusion is a general problem that applies to both processes and threads.</p>
+</li>
+<li><dl class="first docutils">
+<dt>Processes</dt>
+<dd><ul class="first last simple">
+<li>Occurs with processes that share resources such as shared memory, files, and other resources that must be updated atomically</li>
+<li>When not otherwise shared, the address space of a process is protected against reads/writes by other processes</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Threads</dt>
+<dd><ul class="first last simple">
+<li>Because threads share more resources such as having a shared process heap, there are more resources that need to be potentially protected</li>
+<li>Because the address space is shared among threads in one process, cooperation and coordination is required for threads that read from and write to shared data structures</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><p class="first">When mutual exclusion is achieved, atomic operations on shared data structures are guaranteed to be atomic and not interrupted by other threads.</p>
+</li>
+</ul>
+</div>
+<div class="section" id="tools-for-achieving-mutual-exclusion">
+<h2>Tools for Achieving Mutual Exclusion<a class="headerlink" href="#tools-for-achieving-mutual-exclusion" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Mutex</dt>
+<dd><ul class="first last simple">
+<li>Has two operations: Lock() and Unlock()</li>
+<li>Has two states: Locked or Unlocked</li>
+<li>A lock can be acquired before entering a critical region and unlock can be called when leaving the critical region</li>
+<li>If all critical regions are covered by a mutex, then mutual exclusion has been achieved and operations can be said to be atomic</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Semaphore</dt>
+<dd><ul class="first last">
+<li><p class="first">Has two operations: Up() and Down()</p>
+</li>
+<li><p class="first">Has N states: a counter that has a value from 0 - N</p>
+</li>
+<li><p class="first">Up() increases the value by 1</p>
+</li>
+<li><p class="first">Down() decreases the value by 1</p>
+</li>
+<li><p class="first">When the semaphore has a value &gt; 0, then a thread of execution can enter the critical region</p>
+</li>
+<li><p class="first">When the semaphore has a value = 0, then a thread is blocked</p>
+</li>
+<li><dl class="first docutils">
+<dt>The purpose of a semaphore is used to:</dt>
+<dd><ul class="first last simple">
+<li>Limit the number of threads that enter a critical region</li>
+<li>Limit the number of items in a queue between two threads working in a pipeline processing pattern.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Monitor</dt>
+<dd><ul class="first last simple">
+<li>Has four operations: Lock(), Unlock(), Pulse(), Wait()</li>
+<li>Allows for more complicated and user-coded conditions for entering critical regions</li>
+<li>The locking semantics are more complicated for the simplest cases, but can express more complicated mutual exclusion cases in simpler ways than can semaphores or mutexes</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Additional details may be found in the Operating Systems course</dt>
+<dd><ul class="first last simple">
+<li>Mutual Exclusion - <a class="reference external" href="http://osdi.cs.courseclouds.com/html/mutualexclusion.html">http://osdi.cs.courseclouds.com/html/mutualexclusion.html</a></li>
+<li>Deadlock - <a class="reference external" href="http://osdi.cs.courseclouds.com/html/deadlock.html">http://osdi.cs.courseclouds.com/html/deadlock.html</a></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="mutex-example-java">
+<h2>Mutex Example/Java<a class="headerlink" href="#mutex-example-java" title="Permalink to this headline">¶</a></h2>
+<p>This code example shows how to implement a classic mutex, a.k.a. a Lock, in Java.</p>
+<p>These examples come from <a class="reference external" href="http://hpjpc.googlecode.com">http://hpjpc.googlecode.com</a> by Christopher and Thiruvathukal.</p>
+</div>
+<div class="section" id="semaphore-example">
+<h2>Semaphore Example<a class="headerlink" href="#semaphore-example" title="Permalink to this headline">¶</a></h2>
+<p>This shows how to implement a counting semaphore in the Java programming language.</p>
+</div>
+<div class="section" id="barrier">
+<h2>Barrier<a class="headerlink" href="#barrier" title="Permalink to this headline">¶</a></h2>
+<p>This shows how to implement a barrier, which is a synchronization mechanism for awaiting
+a specified number of threads before processing can continue. Once all threads have arrived,
+processing can continue.</p>
+</div>
+<div class="section" id="deadlock-a-classic-problem">
+<h2>Deadlock - a classic problem<a class="headerlink" href="#deadlock-a-classic-problem" title="Permalink to this headline">¶</a></h2>
+<p>A classic problem in computer science and one that is often studied in operating systems
+to show the hazards of working with shared, synchronized state, is the <em>dining philosophers problem</em>.
+We won&#8217;t describe the entire problem here but you can read <a class="reference external" href="http://en.wikipedia.org/wiki/Dining_philosophers_problem">http://en.wikipedia.org/wiki/Dining_philosophers_problem</a>.</p>
+<p>our &#8220;solution&#8221; has the following design:</p>
+<ul class="simple">
+<li>Fork: A class to represent the forks shared by adjacent philosophers at the table.</li>
+<li>Diner0: A class used to represent a philosopher. The philosopher does three things a philosopher normally does: think(), sleep(), and eat().</li>
+<li>Diners0: A class used to represent all of the diners seated at the table with their shared forks. This is where the concurrency takes place.</li>
+</ul>
+</div>
+<div class="section" id="fork">
+<h2>Fork<a class="headerlink" href="#fork" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="diner0">
+<h2>Diner0<a class="headerlink" href="#diner0" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="diners0">
+<h2>Diners0<a class="headerlink" href="#diners0" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="diners1-eliminating-deadlock-with-resource-enumeration">
+<h2>Diners1 - eliminating deadlock with resource enumeration<a class="headerlink" href="#diners1-eliminating-deadlock-with-resource-enumeration" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="execution-with-deadlock">
+<h2>Execution - With Deadlock<a class="headerlink" href="#execution-with-deadlock" title="Permalink to this headline">¶</a></h2>
+<p>If you have Java and Gradle installed on your computer, you can try these out!</p>
+<p>Make sure you have the HPJPC source code:</p>
+<div class="highlight-python"><div class="highlight"><pre>hg clone https://bitbucket.org/loyolachicagocs_books/hpjpc-source-java
+</pre></div>
+</div>
+<p>The following Gradle task in <code class="docutils literal"><span class="pre">build.gradle</span></code> shows how to run Diners0&#8217;s <code class="docutils literal"><span class="pre">main()</span></code> method:</p>
+<p>To build:</p>
+<div class="highlight-python"><div class="highlight"><pre>gradle build
+</pre></div>
+</div>
+<p>To run:</p>
+<div class="highlight-python"><div class="highlight"><pre>gradle Diners0
+</pre></div>
+</div>
+<p>If you run this, you will notice that deadlock ensues fairly quick. The diners get
+into a state where they are waiting on each others&#8217; forks in a cycle:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ gradle Diners0
+:compileJava UP-TO-DATE
+:processResources UP-TO-DATE
+:classes UP-TO-DATE
+:Diners0
+tet4t 023et 12ett 0et40 e134e
+et340 12ett 12ett 123et e1340
+0234e e23e4 1tt40 t23et ett40
+t23et 1ett0 12et0 t23et 1tt40
+1t34e 12et0 1et40 12e30 t234e
+12e30 1et40 tetet et3t4 1t3e4
+1e240 1tte4 12tt0 t2ete t2tt0
+11e3t et3t0 t234e e1340 11t40
+1t340 0e24e tttet tt34e 12e3t
+1t24e 0t3e4 tet4e 12340 12340
+12340 12340 12340 12340 12340
+12340 12340 12340 12340 12340
+12340 12340 12340 12340 12340
+12340 12340 12340 12340 12340
+12340 12340 12340 12340 12340
+12340 12340 12340 12340 12340
+12340 12340 12340 12340 12340
+12340 12340 12340 12340 12340
+12340 12340 12340 12340 12340
+12340 12340 12340 12340 12340
+12340 12340 12340 12340 12340
+12340 12340 12340 12340 12340
+12340 12340 12340 12340 12340
+12340 12340 12340 12340 12340
+12340 12340 12340 12340 12340
+</pre></div>
+</div>
+</div>
+<div class="section" id="deadlock-free-version">
+<h2>Deadlock-Free Version<a class="headerlink" href="#deadlock-free-version" title="Permalink to this headline">¶</a></h2>
+<p>Diners1 has a similar Gradle task:</p>
+<p>Run:</p>
+<div class="highlight-python"><div class="highlight"><pre>gradle Diners1
+</pre></div>
+</div>
+<p>Output:</p>
+<div class="highlight-python"><div class="highlight"><pre>$ gradle Diners1
+:compileJava UP-TO-DATE
+:processResources UP-TO-DATE
+:classes UP-TO-DATE
+:Diners1
+ttttt 1t240 t2et4 1et4t tt2e4
+1e2et 1et4t e13e0 tt3e4 ettt0
+t2te0 0e24e 1ettt e1e3t t1te4
+0tt4e 1etet e13tt tt24e 1t3et
+tettt 0ttet ete3t tt33e 0et4e
+1ete0 01t3t 0tt3e 1e240 te2te
+e1et0 1e2et 02e3e t1t3t 1t3tt
+02ete 1et4t e13et et33t 02tte
+1ett0 et3t0 ete30 t2e3e et3e0
+0et4e ettt0 0e2e4 01t4e 1e2et
+...
+12e30 tet3e 1etet 0ttt0 0etet
+1et4t e2tt4 tt3e4 0t3et 12et0
+1ett0 e1tet 12e30 1tttt etet0
+tettt 1e2t0 0t3e4 tettt ttttt
+023e4 ttttt 023e4 1e2d0 e13d0
+02ed4 e2edt 1etd0 et3d0 1tedt
+02ede 0etde 1etd0 t2tdt t2ede
+01tde et2d0 112dt tedde tedd4
+tedde 02dd0 1edd0 etdd0 1tddt
+1eddt 1eddt 01dde 0tdd0 t2dde
+t2ddt eddd4 tddde tddd4 tdddt
+0ddde eddd0 tdddt 0ddde eddd0
+tddd4 eddd0 0ddde 0ddde eddd0
+eddd0 0ddde 0ddde tddd4 0dddt
+eddd0 tddd4 1dddd 0dddd 1dddd
+tdddd tdddd ddddd
+BUILD SUCCESSFUL
+
+Total time: 18.426 secs
+</pre></div>
+</div>
+<p>The diners, as desired, end up finishing their meal after some time.</p>
+<p>We assume they have moved over to the bar or found a nice place to have dessert.</p>
+</div>
+<div class="section" id="common-data-structures-in-concurrent-programming">
+<h2>Common Data Structures in Concurrent Programming<a class="headerlink" href="#common-data-structures-in-concurrent-programming" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Bound Buffer</dt>
+<dd><ul class="first simple">
+<li>Makes use of a mutex and semaphore internally</li>
+<li>Defines a maximum number of items that exist in the bound buffer&#8217;s queue.</li>
+<li>Has two operations: Enqueue() and Dequeue()</li>
+<li>Enqueue() - enqueues items in the data structure. If the enqueue operation would cause the bound buffer to exceed the maximum, the Enqueue() call will block until another thread dequeues at least one item.</li>
+<li>Dequeue() - dequeues an item from the data structure. If there are zero items in the queue, Dequeue() will block until another thread enqueues an item in the data structure</li>
+<li>Bound buffers are used to make sure that when one thread is producing work for a second thread, that if one thread is faster or slower than the other, that they appropriately wait to some extent for each other.</li>
+</ul>
+<div class="last figure align-center">
+<img alt="Bound Buffer" src="_images/bound_buffer.png" />
+</div>
+</dd>
+</dl>
+</li>
+<li><p class="first">Example Bound Buffer</p>
+</li>
+</ul>
+</div>
+<div class="section" id="design-considerations">
+<h2>Design Considerations<a class="headerlink" href="#design-considerations" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>Threading requires the support of the operating system - a threading library / package is needed</dt>
+<dd><ul class="first last simple">
+<li>In Windows, this is a part of the Windows SDK and .NET Framework</li>
+<li>In Linux and Mac OSX, PThreads provides threading</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Thread usage and creation</dt>
+<dd><ul class="first last">
+<li><p class="first">Threads can be started and stopped on demand or a thread pool can be used</p>
+</li>
+<li><dl class="first docutils">
+<dt>Starting threads dynamically:</dt>
+<dd><ul class="first last simple">
+<li>Has some cost associated with asking the OS to create and schedule the thread</li>
+<li>It can be architecturally challenging to maintain an appropriate number of threads across software components</li>
+<li>This is overall the most simple approach</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Thread Pools</dt>
+<dd><ul class="first last simple">
+<li>The number of threads can be defined at compile time or when the program is first launched</li>
+<li>Instead of creating a new thread, the program acquires a thread and passes a function pointer to the thread to execute</li>
+<li>When the given task is completed, the thread is returned to the pool.</li>
+<li>This approach does not have the overhead of creating / destroying threads as threads are reused.</li>
+<li>This approach often requires library support or some additional code.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>The total number of threads</dt>
+<dd><ul class="first last simple">
+<li>Having several hundred threads on a system with an order of magnitude fewer cores can cause you to run into trouble.</li>
+<li>If a majority of those threads are runnable, then the program will spend most of its time context switching between those threads rather than actually getting work done.</li>
+<li>If such a system is dynamically starting and stopping threads, then the program will most likely spend most of its time creating and destroying threads.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="kernel-threads-vs-user-mode-threads">
+<h2>Kernel Threads vs User Mode Threads<a class="headerlink" href="#kernel-threads-vs-user-mode-threads" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><dl class="first docutils">
+<dt>There are two types of threads:</dt>
+<dd><ul class="first">
+<li><dl class="first docutils">
+<dt>Kernel Threads</dt>
+<dd><p class="first last">-Supported by modern operating systems
+-Scheduled by the operating system</p>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>User Threads</dt>
+<dd><p class="first last">-Supported by almost everything
+-Scheduled by the process</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="last figure align-center">
+<img alt="Kernel and User Mode Threads" src="_images/kernel_user_threads.png" />
+</div>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Context switching:</dt>
+<dd><ul class="first last simple">
+<li>Kernel threads have a higher overhead because the scheduler must be invoked and there might be a time lag before a runnable thread is actually executed.</li>
+<li>Kernel threads often perform very well because the operating system has more information about the resource state of the computer and can make better global scheduling decisions than can a program</li>
+<li>User-mode threads can context switch with fewer overall operations, but scheduling them is guess-work.</li>
+<li>User mode threads can be created more rapidly because new stacks and scheduler entries do not need to be created by the operating system</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Where are user-mode threads used?</dt>
+<dd><ul class="first last simple">
+<li>In systems without kernel mode threads</li>
+<li>When the number of threads a system needs is in the hundreds or thousands (user-mode threads scale better in these scenarios)</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Where are kernel-mode threads used?</dt>
+<dd><ul class="first last simple">
+<li>When the number of threads is not very high (less than 10 per core)</li>
+<li>When blocking calls are involved (user-mode thread libraries usually have separate I/O libraries)</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="concurrent-file-copy-example">
+<h2>Concurrent File Copy Example<a class="headerlink" href="#concurrent-file-copy-example" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>FileCopy0: The sequential version</li>
+<li>FileCopy1: The concurrent version</li>
+</ul>
+</div>
+<div class="section" id="sequential-file-copy">
+<h2>Sequential File Copy<a class="headerlink" href="#sequential-file-copy" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="concurrent-file-copy-organization">
+<h2>Concurrent File Copy Organization<a class="headerlink" href="#concurrent-file-copy-organization" title="Permalink to this headline">¶</a></h2>
+<p>Quick overview of the various classes:</p>
+<ul class="simple">
+<li>Pool: Maintains a list of buffers that can be used for allocating/freeing blocks of data without triggering new (or dispose) repeatedly.</li>
+<li>Buffer: Used as a shared object for reading and writing blocks of data (via the FileCopyReader1 and FileCopyWriter1 classes)</li>
+<li>BufferQueue: Used to queue up blocks as they are read or written. This allows for varying speeds of reader and writer, subject to the number of blocks available in the Pool.</li>
+<li>FileCopyReader1: Used to run the reader thread.</li>
+<li>FileCopyWriter1: Used to run the writer thread.</li>
+<li>FileCopy1: Used to act as a drop in replacement for FileCopy0. Sets up the reader and writer threads and then joins with both when the reading/writing are completed.</li>
+</ul>
+</div>
+<div class="section" id="execution">
+<h2>Execution<a class="headerlink" href="#execution" title="Permalink to this headline">¶</a></h2>
+<p>You can run FileCopy0 and FileCopy1 by using the corresponding Gradle tasks.</p>
+<p>As shown, there are two properties you can set: <code class="docutils literal"><span class="pre">fc0_src</span></code> and <code class="docutils literal"><span class="pre">fc0_dest</span></code>:</p>
+<div class="highlight-python"><div class="highlight"><pre>gradle FileCopy0 -Pfc0_src=inputFile -Pfc0_dest=outputFile
+</pre></div>
+</div>
+<p>You can also run FileCopy1 (the same parameter names are used):</p>
+<div class="highlight-python"><div class="highlight"><pre>gradle FileCopy1 -Pfc0_src=inputFile -Pfc0_dest=outputFile
+</pre></div>
+</div>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, George K. Thiruvathukal and Joe Kaylor.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

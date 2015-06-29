@@ -1,0 +1,652 @@
+<!DOCTYPE html>
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Clocks and Synchronization &mdash; Distributed Systems alpha documentation</title>
+    
+    <link rel="stylesheet" href="_static/basic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootswatch-3.2.0/united/bootstrap.min.css" type="text/css" />
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     'alpha',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.2.0/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="top" title="Distributed Systems alpha documentation" href="index.html" />
+    <link rel="next" title="Domain Name Service" href="dns.html" />
+    <link rel="prev" title="Writing with Sphinx" href="sphinx.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head>
+  <body role="document">
+  
+
+
+  <div id="navbar" class="navbar navbar-inverse navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          COMP 339-439</a>
+        <span class="navbar-text navbar-version pull-left"><b>v0.5</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+                <li><a href="genindex.html">Index</a></li>
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="issues.html">Introduction and Issues</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#what-is-a-distributed-system">What is a distributed system?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#examples">Examples</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#illustration">Illustration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#advantages-of-distributed-systems-vs-centralized">Advantages of Distributed Systems vs. Centralized</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#advantages-of-distributed-systems-vs-standalones">Advantages of Distributed Systems vs. Standalones</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#disadvantages-of-distributed-systems">Disadvantages of Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#key-characteristics">Key Characteristics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#resource-sharing">Resource Sharing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#resources-must-be-managed">Resources Must be Managed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#openness">Openness</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#open-distributed-systems">Open Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#concurrency">Concurrency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#scalability">Scalability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#fault-tolerance">Fault Tolerance</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#transparency">Transparency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#design-issues">Design Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#issues-arising-from-distributed-systems">Issues arising from Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#naming">Naming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#naming-name-resolution">Naming - Name Resolution</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#naming-design-considerations">Naming - Design Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#communication">Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#types-of-communication">Types of Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#client-server-communication">Client-Server Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#id1">Client-Server Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#group-multicast">Group Multicast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#software-structure">Software Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#distributed-system-software-structure">Distributed System Software Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#consistency-management">Consistency Management</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#caching">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#consistency">Consistency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#workload-allocation">Workload Allocation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#processor-pool-model">Processor Pool Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="issues.html#quality-of-service">Quality-of-Service</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="networking.html">Networking Primer</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#networks">Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#many-types-of-networks">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id1">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id2">Many Types of Networks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#internetworks">Internetworks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#performance-issues">Performance Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#example-a-typical-campus-network">Example- A Typical Campus Network</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#network-topologies">Network Topologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id3">Network Topologies</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#a-network-is-not-an-island">A Network is not an Island</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#design-issues-in-layers">Design Issues In Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#protocols-are-divided-into-layers">Protocols are divided into layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#physical-layer">Physical Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#data-link-layer">Data Link Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#the-network-layer">The Network Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#the-transport-layer">The Transport Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#the-session-presentation-layers">The Session &amp; Presentation Layers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#application-layer">Application Layer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#interprocess-communication">Interprocess Communication:</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#reliability">Reliability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#mapping-data-to-messages">Mapping Data to Messages</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#marshaling">Marshaling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#case-study-unix-interprocess-communication-ipc">Case Study: UNIX Interprocess Communication (IPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#example-simple-tcp-messaging-framework-from-hpjpc">Example - Simple TCP Messaging Framework (from HPJPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#message-class">Message class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#messageclient-class">MessageClient class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#messageserver-class">MessageServer class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#messageserverdispatcher-class">MessageServerDispatcher class</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#dateservice-using-message-classes-interfaces">DateService using Message Classes/Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#dateclient-using-message-classes-interfaces">DateClient using Message Classes/Interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#sockets-communication-using-datagram">Sockets Communication Using Datagram</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#stream-communication">Stream Communication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#remote-procedure-call">Remote Procedure Call</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#remote-procedure-call-rpc">Remote Procedure Call (RPC)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#observations">Observations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#rpc">RPC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#rpc-mechanisms">RPC Mechanisms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#rpc-steps">RPC Steps</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#design-issues">Design Issues</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#parameter-passing">Parameter Passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id4">Parameter Passing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#binding">Binding</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#use-of-specification">Use of Specification</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#locating-the-server">Locating the Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#how-to-handle-failures">How to Handle Failures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#client-cannot-locate-server">Client Cannot Locate Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#lost-request-message">Lost Request Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#lost-reply-message">Lost Reply Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id5">Lost Reply Message</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#server-crashes">Server Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id6">Server Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#client-crashes">Client Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#id7">Client Crashes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#acknowledgments">Acknowledgments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#flow-control">Flow Control</a></li>
+<li class="toctree-l2"><a class="reference internal" href="networking.html#performance">Performance</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="concurrency.html">Concurrency and Threads</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#threads-vs-processes">Threads vs Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#what-are-processes-threads">What are Processes, Threads?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#common-threading-use-cases">Common Threading Use Cases</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#mutual-exclusion">Mutual Exclusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#tools-for-achieving-mutual-exclusion">Tools for Achieving Mutual Exclusion</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#mutex-example-java">Mutex Example/Java</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#semaphore-example">Semaphore Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#barrier">Barrier</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#deadlock-a-classic-problem">Deadlock - a classic problem</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#fork">Fork</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#diner0">Diner0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#diners0">Diners0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#diners1-eliminating-deadlock-with-resource-enumeration">Diners1 - eliminating deadlock with resource enumeration</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#execution-with-deadlock">Execution - With Deadlock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#deadlock-free-version">Deadlock-Free Version</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#common-data-structures-in-concurrent-programming">Common Data Structures in Concurrent Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#design-considerations">Design Considerations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#kernel-threads-vs-user-mode-threads">Kernel Threads vs User Mode Threads</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#concurrent-file-copy-example">Concurrent File Copy Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#sequential-file-copy">Sequential File Copy</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#concurrent-file-copy-organization">Concurrent File Copy Organization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="concurrency.html#execution">Execution</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html">Distributed Systems and Storage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#types-of-non-local-storage">Types of Non-Local Storage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#how-do-we-evaluate-storage-systems">How Do We Evaluate Storage Systems?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#storage-devices">Storage Devices</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#storage-and-failure">Storage and Failure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#maximizing-availability-raid">Maximizing Availability - RAID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid">RAID</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid-0">RAID - 0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid-1">RAID - 1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#raid-5">RAID - 5</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#local-storage">Local Storage</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#implementing-files-and-folders">Implementing Files and Folders</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#inodes">Inodes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#inodes-indirect-blocks">Inodes - Indirect Blocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#block-caches">Block Caches</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#folders-and-path-traversal">Folders and Path Traversal</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#virtual-filesystems-vfs">Virtual Filesystems / VFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#id1">Virtual Filesystems / VFS</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#virtual-filesystems-and-stacking">Virtual Filesystems and Stacking</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#distributed-filesystems">Distributed Filesystems</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#file-service-model">File Service Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#directory-service">Directory Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#naming-transparency">Naming Transparency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#file-sharing-semantics">File Sharing Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#unix-semantics">UNIX Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#more-semantics">More Semantics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#distributed-file-system-implementation">Distributed File System Implementation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#system-structure">System Structure</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#id2">Directory Service</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#stateless-versus-stateful">Stateless versus Stateful</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#caching">Caching</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#caching-server">Caching - Server</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#caching-client">Caching - Client</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#client-cache-consistency">Client - Cache Consistency</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#client-cache-consistency-other-options">Client - Cache Consistency - Other Options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication">Replication</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication-update-protocols">Replication - Update Protocols</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication-voting-algorithm">Replication - Voting Algorithm</a></li>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#replication-general-quorum-algorithm">Replication - General Quorum Algorithm</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="storage.html#case-study-sun-nfs">Case Study - SUN NFS</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="storage.html#sun-nfs-implementation">SUN NFS - Implementation</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="directories.html">Directories and LDAP</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#what-is-a-directory">What is a Directory?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#what-is-not-a-directory">What is NOT a Directory?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#types">Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#characteristics-of-directories">Characteristics of Directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#evolution-of-directories">Evolution of Directories</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#so-what-is-ldap-exactly">So what is LDAP, exactly?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#early-ldap-implementations">Early LDAP Implementations</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#slapd-stand-alone-ldap-daemon">SLAPD: Stand-alone LDAP Daemon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#slapd-continued">SLAPD: Continued</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#ldap-client-server-exchange-protocol">LDAP Client-Server Exchange Protocol</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#example-ldap-usage">Example LDAP Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#schemas">Schemas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#attributes-and-objectclasses">attributes and objectclasses</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#namespaces">Namespaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#ldap-tree-topology">LDAP Tree Topology</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#network-architecture">Network Architecture</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#distributed-ldap-server-model">Distributed LDAP Server Model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#ldif-example">LDIF Example</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#acknowledgements">Acknowledgements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="directories.html#references">References</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="ci.html">Continuous Integration</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#what-does-continuous-integration-do">What Does Continuous Integration Do?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#how-often-is-continuous-integration-run">How Often is Continuous Integration Run?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#what-are-the-bits-and-pieces-of-continuous-integration">What are the Bits and Pieces of Continuous Integration?</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#continuous-integration-products-vendors">Continuous Integration Products / Vendors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#continuous-integration-and-the-key-characteristics-of-distributed-systems">Continuous Integration and the Key Characteristics of Distributed Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#case-study-my-simple-ci-system">Case Study - My Simple CI System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#the-front-page-of-team-city">The Front Page of Team City</a></li>
+<li class="toctree-l2"><a class="reference internal" href="ci.html#build-nodes">Build Nodes</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="maven.html">Project Build Management With Maven</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#creating-a-maven-project-from-scratch">Creating a Maven Project from Scratch</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#generating-an-eclipse-project-from-a-maven-project">Generating an Eclipse Project from a Maven Project</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#configuring-eclipse">Configuring Eclipse</a></li>
+<li class="toctree-l2"><a class="reference internal" href="maven.html#running-unit-tests-with-maven">Running Unit tests with Maven</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="sphinx.html">Writing with Sphinx</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#about-sphinx">About Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#additional-resources">Additional Resources</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#setting-up-sphinx-ubuntu-linux">Setting up Sphinx - Ubuntu Linux</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#sphinx-on-non-linux-platforms">Sphinx on non-Linux Platforms</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#setting-up-sphinx-mac-osx-using-homebrew-instead-of-macports">Setting up Sphinx - Mac OSX (Using HomeBrew instead of MacPorts)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#setting-up-sphinx-windows">Setting up Sphinx - Windows</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#setting-up-sphinx-in-a-python-virtualenv">Setting up Sphinx in a Python virtualenv</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#authoring-in-sphinx">Authoring in Sphinx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="sphinx.html#examples">Examples</a></li>
+</ul>
+</li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Clocks and Synchronization</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#what-is-time-some-physics">What is Time? Some Physics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#time-and-computation">Time and Computation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#physical-clocks">Physical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#physical-clocks-multiple-systems">Physical Clocks - Multiple Systems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clock-synchronization">Clock Synchronization</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#clocks-synchronization-and-reliability">Clocks Synchronization and Reliability</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#lamports-logical-clocks">Lamport’s Logical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementing-lamports-logical-clocks">Implementing Lamport’s Logical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#limitations-of-lamports-logical-clocks">Limitations of Lamport’s Logical Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#vector-clocks">Vector Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#implementing-vector-clocks">Implementing Vector Clocks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#so-what-did-we-get-out-of-all-of-this">So... What Did We Get Out of All of This?</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="dns.html">Domain Name Service</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mpi.html">Message Passing Interface</a></li>
+<li class="toctree-l1"><a class="reference internal" href="corba.html">Object Brokers and CORBA</a></li>
+<li class="toctree-l1"><a class="reference internal" href="rest.html">REST and Web Services</a></li>
+<li class="toctree-l1"><a class="reference internal" href="nosql.html">NoSQL and Sharding</a></li>
+</ul>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="lectures.html">Legacy Lectures</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#software">Software</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#introduction">Introduction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#networking-overview">Networking Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#threads-and-processes">Threads and Processes</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#filesystems">Filesystems</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#filesystems-research-at-luc">Filesystems Research at LUC</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#grids-and-clouds">Grids and Clouds</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#message-passing-messaging-middleware">Message Passing / Messaging Middleware</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#distributed-object-programming">Distributed Object Programming</a></li>
+<li class="toctree-l2"><a class="reference internal" href="lectures.html#modern-distributed-databases">Modern Distributed Databases</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">Clocks and Synchronization</a><ul>
+<li><a class="reference internal" href="#what-is-time-some-physics">What is Time? Some Physics</a></li>
+<li><a class="reference internal" href="#time-and-computation">Time and Computation</a></li>
+<li><a class="reference internal" href="#physical-clocks">Physical Clocks</a></li>
+<li><a class="reference internal" href="#physical-clocks-multiple-systems">Physical Clocks - Multiple Systems</a></li>
+<li><a class="reference internal" href="#clock-synchronization">Clock Synchronization</a></li>
+<li><a class="reference internal" href="#clocks-synchronization-and-reliability">Clocks Synchronization and Reliability</a></li>
+<li><a class="reference internal" href="#lamports-logical-clocks">Lamport’s Logical Clocks</a></li>
+<li><a class="reference internal" href="#implementing-lamports-logical-clocks">Implementing Lamport’s Logical Clocks</a></li>
+<li><a class="reference internal" href="#limitations-of-lamports-logical-clocks">Limitations of Lamport’s Logical Clocks</a></li>
+<li><a class="reference internal" href="#vector-clocks">Vector Clocks</a></li>
+<li><a class="reference internal" href="#implementing-vector-clocks">Implementing Vector Clocks</a></li>
+<li><a class="reference internal" href="#so-what-did-we-get-out-of-all-of-this">So... What Did We Get Out of All of This?</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="sphinx.html" title="Previous Chapter: Writing with Sphinx">
+      <span class="glyphicon glyphicon-chevron-left"></span>
+    </a>
+  </li>
+  <li>
+    <a href="dns.html" title="Next Chapter: Domain Name Service">
+      <span class="glyphicon glyphicon-chevron-right"></span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/clocks.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      
+  <div class="section" id="clocks-and-synchronization">
+<h1>Clocks and Synchronization<a class="headerlink" href="#clocks-and-synchronization" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="what-is-time-some-physics">
+<h2>What is Time? Some Physics<a class="headerlink" href="#what-is-time-some-physics" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">The understanding of time has evolved greatly in the past 150 years.</p>
+</li>
+<li><dl class="first docutils">
+<dt>With Einstein’s Special and General Relativity Theories, we’ve come to understand:</dt>
+<dd><ul class="first last simple">
+<li>That time is interwoven with space</li>
+<li>Time is relative to the reference frame of an observer</li>
+<li>We now know that simultaneity is a relative concept. Two events A and B occurring simultaneously in one reference frame may appear to be ordered A then B in another frame and B then A in yet another reference frame.</li>
+<li>All of this is true without invalidating the observations our causal relationships observed in any reference frame.</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="figure" id="id1">
+<img src="_images/Relativity_of_Simultaneity.svg" /><p class="caption"><span class="caption-text">Two events in space-time. The green observer sees A and B happening at the same time since the two events happen on the same X time plane for A. For the red observer, B is encountered first, then A second. For the blue observer A happens first, and B second. (Image taken from <a class="reference external" href="http://commons.wikipedia.org/wiki/File:Relativity_of_Simultaneity.*">http://commons.wikipedia.org/wiki/File:Relativity_of_Simultaneity.*</a> under the Creative Commons License.)</span></p>
+</div>
+</div>
+<div class="section" id="time-and-computation">
+<h2>Time and Computation<a class="headerlink" href="#time-and-computation" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>This dive into physics is not so much to give a lesson in physics, but to impress upon you the underlying complexity of something most people take for granted every day.</li>
+<li>In a similar fashion, in computation, the concept of time measurement can be very complicated</li>
+<li>When building a distributed system, do not take it for granted that you can simply trust the clock on the machine that is executing your code.</li>
+<li>More complicated solutions are needed to establish the order of events that have occurred or when they will occur in the future.</li>
+</ul>
+</div>
+<div class="section" id="physical-clocks">
+<h2>Physical Clocks<a class="headerlink" href="#physical-clocks" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Computer Timer: an integrated circuit that contains a precisely machined quartz crystal. When kept under tension the quartz crystal oscillates at a well-defined frequency.</p>
+</li>
+<li><p class="first">Clock Tick: after a predefined number of oscillations, the timer will generate a clock tick. This clock tick generates a hardware interrupt that causes the computer’s operating system to enter a special routine in which it can update the software clock and run the process scheduler.</p>
+</li>
+<li><dl class="first docutils">
+<dt>This system is fairly reliable on one system. With the timer we can define:</dt>
+<dd><ul class="first last simple">
+<li>simultaneous: all actions that happen between clock ticks</li>
+<li>before: an operation that happens in a previous clock tick</li>
+<li>after: an operation that happens in a subsequent clock tick</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="physical-clocks-multiple-systems">
+<h2>Physical Clocks - Multiple Systems<a class="headerlink" href="#physical-clocks-multiple-systems" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Unfortunately, it is impossible for each machined quartz crystal in every computer timer to be exactly the same. These differences create clock skew.</li>
+<li>For example, if a timer interrupts 60 times per second, it should generate 216,000 ticks per hour.</li>
+<li>In practice, the real number of ticks is typically between 215,998 and 216,002 per hour. This means that we aren’t actually getting precisely 60 ticks per second.</li>
+<li>We can say that a timer is within specification if there is some constant p such that:</li>
+</ul>
+<div class="math">
+\[\begin{split}1 - p &lt;= \frac{dC}{dT} &lt;= 1 + p\end{split}\]</div>
+<ul class="simple">
+<li>The constant p is the maximum drift rate of the timer.</li>
+<li>On any two given computers, the drift rate will likely differ.</li>
+<li>To solve this problem, clock synchronization algorithms are necessary.</li>
+</ul>
+</div>
+<div class="section" id="clock-synchronization">
+<h2>Clock Synchronization<a class="headerlink" href="#clock-synchronization" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>The common approach to time synchronization has been to have many computers make use of a time server.</li>
+<li>Typically the time server is equipped with special hardware that provides a more accurate time than does a cheaper computer timer</li>
+<li>The challenge with this approach is that there is a delay in the transmission from the time server to the client receiving the time update.</li>
+<li>This delay is not constant for all requests. Some request may be faster and others slower.</li>
+<li>So how do we solve this problem?</li>
+</ul>
+<div class="figure">
+<img alt="_images/ntp_request_response.jpg" src="_images/ntp_request_response.jpg" />
+</div>
+<ul class="simple">
+<li>The relative time correction C can be calculated as:</li>
+</ul>
+<div class="math">
+\[C = \frac{(T_2 - T_1) + (T_3 - T_4)}{2}\]</div>
+<ul class="simple">
+<li>The way this works is that the client sends a packet with <span class="math">\(T_1\)</span> recorded to the time server. The time server will record the receipt time of the packet <span class="math">\(T_2\)</span>. When the response is sent, the time server will write its current time <span class="math">\(T_3\)</span> to the response. When the client receives the response packet, it will record <span class="math">\(T_4\)</span> from its local clock.</li>
+<li>When the value of C is worked out, the client can correct its local clock</li>
+<li>The client must be careful. If the value of C is positive, then C can be added to the software clock</li>
+<li>If the value of C is negative, then the client must artificially decrease the amount of milliseconds added to its software clock each tick until the offset is cleared.</li>
+<li>It is always inadvisable to cause the clock to go backwards. Most software that relies on time will not react well to this.</li>
+</ul>
+</div>
+<div class="section" id="clocks-synchronization-and-reliability">
+<h2>Clocks Synchronization and Reliability<a class="headerlink" href="#clocks-synchronization-and-reliability" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Always remember: the goal of clock synchronization is to minimize the difference between the accepted actual time and the time on a given client machine</li>
+<li>When this is achieved, it can be said that in a given set of computers that synchronize that their clocks are more closely in sync.</li>
+<li>Even in this case of more accurate and more often corrected for clocks, developers of distributed systems should still be wary of relying on local clock time.</li>
+<li>Because there are corrections going on, the time recorded for an event might have actually happened at a different time on another computer because of differing drift rates of those computer timers.</li>
+<li>Because we have correction of time does not mean that all machines agree on time, it just means they are much closer to each other on average.</li>
+<li>For some distributed systems, this may be sufficient, for others it may not be.</li>
+</ul>
+</div>
+<div class="section" id="lamports-logical-clocks">
+<h2>Lamport’s Logical Clocks<a class="headerlink" href="#lamports-logical-clocks" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">An important paper to read - “Time, clocks, and the ordering of events in a distributed system” by Lamport (1978).</p>
+</li>
+<li><p class="first">This paper can be looked up on scholar.google.com</p>
+</li>
+<li><p class="first">The important contribution of Lamport is that in a distributed system, clocks need not be synchronized absolutely.</p>
+</li>
+<li><p class="first">If two processes do not interact, it is not necessary that their clocks be synchronized because the lack of synchronization would not be observable and thus not cause problems.</p>
+</li>
+<li><p class="first">It is not important that all processes agree on what the actual time is, but that they agree on the order in which events occur.</p>
+</li>
+<li><dl class="first docutils">
+<dt>Rules of Lamport’s Logical Clocks:</dt>
+<dd><ul class="first last">
+<li><p class="first">Defines a relationship called “happens-before”. <span class="math">\(a\)</span> -&gt; <span class="math">\(b\)</span> is read as “a happens before b”</p>
+</li>
+<li><p class="first">if <span class="math">\(a\)</span> and <span class="math">\(b\)</span> are events in the same process and <span class="math">\(a\)</span> occurs before <span class="math">\(b\)</span>, then <span class="math">\(a\)</span> -&gt; <span class="math">\(b\)</span> is true.</p>
+</li>
+<li><p class="first">if <span class="math">\(a\)</span> is the event of a message being sent by one process and <span class="math">\(b\)</span> is the event of the message being received by another process, then <span class="math">\(a\)</span> -&gt; <span class="math">\(b\)</span> is true</p>
+</li>
+<li><p class="first">“happens-before” is transitive, meaning if <span class="math">\(a\)</span> -&gt; <span class="math">\(b\)</span> and <span class="math">\(b\)</span> -&gt; <span class="math">\(c\)</span>, then <span class="math">\(a\)</span> -&gt; <span class="math">\(c\)</span></p>
+</li>
+<li><dl class="first docutils">
+<dt>if <span class="math">\(a\)</span> -&gt; <span class="math">\(b\)</span> happens between two process, and events <span class="math">\(x\)</span> and <span class="math">\(y\)</span> occur on another set of processes and these two sets of processes don’t exchange messages then:</dt>
+<dd><ul class="first last simple">
+<li>we cannot say whether <span class="math">\(x\)</span> -&gt; <span class="math">\(y\)</span> or <span class="math">\(y\)</span> -&gt; <span class="math">\(x\)</span> from the perspective of the first set of processes</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="implementing-lamports-logical-clocks">
+<h2>Implementing Lamport’s Logical Clocks<a class="headerlink" href="#implementing-lamports-logical-clocks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>When a message is transmitted from P1 to P2, P1 will encode the send time into the message.</li>
+<li>When P2 receives the message, it will record the time of receipt</li>
+<li>If P2 discovers that the time of receipt is before the send time, P2 will update its software clock to be one greater than the send time (1 milli second at least)</li>
+<li>If the time at P2 is already greater than the send time, then no action is required for P2</li>
+<li>With these actions the “happens-before” relationship of the message being sent and received is preserved.</li>
+</ul>
+</div>
+<div class="section" id="limitations-of-lamports-logical-clocks">
+<h2>Limitations of Lamport’s Logical Clocks<a class="headerlink" href="#limitations-of-lamports-logical-clocks" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>Lamport’s logical clocks lead to a situation where all events in a distributed system are totally ordered. That is, if <span class="math">\(a\)</span> -&gt; <span class="math">\(b\)</span>, then we can say <span class="math">\(C(a) &lt; C(b)\)</span>.</li>
+<li>Unfortunately, with Lamport’s clocks, nothing can be said about the actual time of a and b. If the logical clock says <span class="math">\(a\)</span> -&gt; <span class="math">\(b\)</span>, that does not mean in reality that a actually happened before b in terms of real time.</li>
+</ul>
+<div class="figure" id="id2">
+<img alt="_images/lamport_limitations.jpg" src="_images/lamport_limitations.jpg" />
+<p class="caption"><span class="caption-text">From this diagram, we can see that <span class="math">\(m_1 -&gt; m_3\)</span>. We also know that <span class="math">\(C(m_1) &lt; C(m_3)\)</span>. We can see that <span class="math">\(m_2 -&gt; m_3\)</span> and that <span class="math">\(C(m_2) &lt; C(m_3)\)</span>. What we cannot tell here is whether <span class="math">\(m_1\)</span> or <span class="math">\(m_2\)</span> caused <span class="math">\(m_3\)</span> to be sent.</span></p>
+</div>
+<ul class="simple">
+<li>The problem with Lamport clocks is that they do not capture causality.</li>
+<li>If we know that a -&gt; c and b -&gt; c we cannot say which action initiated c.</li>
+<li>This kind of information can be important when trying to replay events in a distributed system (such as when trying to recover after a crash).</li>
+<li>The theory goes that if one node goes down, if we know the causal relationships between messages, then we can replay those messages and respect the causal relationship to get that node back up to the state it needs to be in.</li>
+</ul>
+</div>
+<div class="section" id="vector-clocks">
+<h2>Vector Clocks<a class="headerlink" href="#vector-clocks" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">Vector clocks allow causality to be captured</p>
+</li>
+<li><dl class="first docutils">
+<dt>Rules of Vector Clocks:</dt>
+<dd><ul class="first last simple">
+<li>A vector clock <span class="math">\(VC(a)\)</span> is assigned to an event a</li>
+<li>If <span class="math">\(VC(a) &lt; VC(b)\)</span> for events a and b, then event a is known to causally precede b.</li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>Each Process <span class="math">\(P_i\)</span> maintains a vector <span class="math">\(VC_i\)</span> with the following properties:</dt>
+<dd><ul class="first last simple">
+<li><span class="math">\(VC_i[i]\)</span> is the number of events that have occurred so far at <span class="math">\(P_i\)</span>. i.e. <span class="math">\(VC_i[i]\)</span> is the local logical clock at process <span class="math">\(P_i\)</span></li>
+<li>If <span class="math">\(VC_i[j] = k\)</span> then <span class="math">\(P_i\)</span> knows that <span class="math">\(k\)</span> events have occurred at <span class="math">\(P_j\)</span>. It is thus <span class="math">\(P_i\)</span>&#8216;s knowledge of the local time at <span class="math">\(P_j\)</span></li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="implementing-vector-clocks">
+<h2>Implementing Vector Clocks<a class="headerlink" href="#implementing-vector-clocks" title="Permalink to this headline">¶</a></h2>
+<ul>
+<li><p class="first">The first property of the vector clock is accomplished by incrementing <span class="math">\(VC_i[i]\)</span> at each new event that happens at process <span class="math">\(P_i\)</span></p>
+</li>
+<li><dl class="first docutils">
+<dt>The second property is accomplished by the following steps:</dt>
+<dd><ol class="first last arabic simple">
+<li>Before executing any event (sending a message or some internal event), <span class="math">\(P_i\)</span> executes <span class="math">\(VC_i[i]\)</span> &lt;- <span class="math">\(VC_i[i] + 1\)</span></li>
+<li>When process <span class="math">\(P_i\)</span> sends a message <span class="math">\(m\)</span> to <span class="math">\(P_j\)</span>, it sets m&#8217;s (vector) timestamp <span class="math">\(ts(m) = VC_i\)</span></li>
+<li>Upon receiving a message <span class="math">\(m\)</span>, process <span class="math">\(P_j\)</span> adjusts its own vector by setting <span class="math">\(VC_j[k]\)</span> &lt;- <span class="math">\(max( VC_j[k], ts(m)[k] )\)</span> for each k.</li>
+</ol>
+</dd>
+</dl>
+</li>
+</ul>
+</div>
+<div class="section" id="so-what-did-we-get-out-of-all-of-this">
+<h2>So... What Did We Get Out of All of This?<a class="headerlink" href="#so-what-did-we-get-out-of-all-of-this" title="Permalink to this headline">¶</a></h2>
+<ul class="simple">
+<li>We can say if an event <span class="math">\(a\)</span> has a timestamp <span class="math">\(ts(a)\)</span>, then <span class="math">\(ts(a)[i]-1\)</span> denotes the number of events processed at <span class="math">\(P_i\)</span> that causally precede <span class="math">\(a\)</span></li>
+<li>This means that when <span class="math">\(P_j\)</span> receives a message from <span class="math">\(P_i\)</span> with timestamp <span class="math">\(ts(m)\)</span>, it knows about the number of events that occured at <span class="math">\(P_i\)</span> that causally preceded the sending of <span class="math">\(m\)</span></li>
+<li>Even more importantly, <span class="math">\(P_j\)</span> has been told how many events in <strong>other</strong> processes have taken place before <span class="math">\(P_i\)</span> sent message <span class="math">\(m\)</span>.</li>
+<li>So, this means we could achieve a very important capability in a distributed system: we can ensure that a message is delivered only if all messages that causally precede it have also been received as well.</li>
+<li>We can use this capability to build a truly distributed dataflow graph with dependencies without having a centralized coordinating process.</li>
+</ul>
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright 2013, George K. Thiruvathukal and Joe Kaylor.<br/>
+      Created using <a href="http://sphinx.pocoo.org/">Sphinx</a> 1.3.1.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
